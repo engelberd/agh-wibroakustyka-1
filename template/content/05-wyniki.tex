@@ -1,7 +1,7 @@
 \section{Wyniki pomiarów}
 \label{sec:wyniki}
 \Cref{tab:wyniki,fig:wyniki} przedstawiają tę samą serię danych
-z pliku \texttt{data/measurements.csv}. Jest to przykład powtórzeń
+z pliku \texttt{data/raw/measurements.csv}. Jest to przykład powtórzeń
 w ustalonych warunkach, a nie poziomów przeznaczonych do sumowania.
 \begin{table}[htbp]
   \centering
@@ -15,7 +15,7 @@ w ustalonych warunkach, a nie poziomów przeznaczonych do sumowania.
       column type={S[table-format=2.1]},string type},
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule}
-  ]{data/measurements.csv}
+  ]{data/raw/measurements.csv}
 \end{table}
 \begin{figure}[htbp]
   \centering
@@ -29,7 +29,7 @@ w ustalonych warunkach, a nie poziomów przeznaczonych do sumowania.
       /pgf/number format/use comma,
     ]
       \addplot[accent,mark=*,thick] table[
-        x=measurement,y=level,col sep=comma]{data/measurements.csv};
+        x=measurement,y=level,col sep=comma]{data/raw/measurements.csv};
     \end{axis}
   \end{tikzpicture}
   \caption{Rozrzut demonstracyjnych wyników kolejnych powtórzeń.}

@@ -7,7 +7,7 @@ import csv
 from statistics import mean, stdev
 from math import sqrt
 
-with open("data/measurements.csv", encoding="utf-8") as stream:
+with open("data/raw/measurements.csv", encoding="utf-8") as stream:
     levels = [float(row["level"]) for row in csv.DictReader(stream)]
 print(mean(levels), stdev(levels) / sqrt(len(levels)))
 \end{lstlisting}

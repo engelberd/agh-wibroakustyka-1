@@ -21,8 +21,9 @@
         "%DOC%"
       ],
       "env": {
-        "PATH": "/Library/TeX/texbin:%DIR%/.output/texlive/bin/universal-darwin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-      }
+        "PATH": "/Library/TeX/texbin:%DIR%/../../.output/texlive/bin/universal-darwin:%DIR%/../.output/texlive/bin/universal-darwin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      },
+      "cwd": "%DIR%"
     }
   ]
 }

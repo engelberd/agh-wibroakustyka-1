@@ -1,149 +1,134 @@
-# Szablon sprawozdania AGH
+# Wibroakustyka w Technice i Środowisku 1
 
-Kompaktowy szablon LaTeX do sprawozdań laboratoryjnych i raportów technicznych:
-Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie,
-Wydział Inżynierii Mechanicznej i Robotyki, Inżynieria Akustyczna.
-Jest to propozycja użytkowa, a nie oficjalny wzór wydziałowy.
+Sprawozdania laboratoryjne z przedmiotu na AGH, Wydział Inżynierii
+Mechanicznej i Robotyki, kierunek Inżynieria Akustyczna.
+Repozytorium utworzono z [agh-report-template](https://github.com/engelberd/agh-report-template),
+opartego na [inscrive-io/latex-report-template](https://github.com/inscrive-io/latex-report-template).
+Oryginalna [licencja MIT](LICENSE) pozostaje bez zmian.
 
-Projekt opiera się na [inscrive-io/latex-report-template](https://github.com/inscrive-io/latex-report-template).
-Zachowano oryginalną [licencję MIT](LICENSE) i informację o autorze.
+## Układ repozytorium
 
-## Struktura
+```text
+shared/style/universityreport.sty   wspólny wygląd wszystkich raportów
+figures/                          wspólne logo i ilustracje
+template/                         pliki startowe nowego ćwiczenia
+cwiczenia/
+  01-pomiar-poziomu-cisnienia/     pierwsze ćwiczenie (na razie demonstracja)
+    main.tex                      metadane i kolejność sekcji
+    latexmkrc                     odwołanie do wspólnej konfiguracji
+    references.bib                bibliografia danego raportu
+    content/                      tekst sprawozdania
+    data/raw/                     oryginalne pomiary
+    data/processed/               dane po obliczeniach
+    analysis/                     Python lub Quarto, opcjonalnie
+    figures/                      zdjęcia i ilustracje ćwiczenia
+    generated/                    tabele, wykresy i wyniki analizy
+    .output/                      wynikowy PDF i pliki pomocnicze
+scripts/report.py                 tworzenie, kompilacja i eksport
+latexmkrc                         wspólna konfiguracja pdfLaTeX + Biber
+.output/                          lokalne narzędzia i archiwa eksportowe
+```
 
-- `main.tex` -- metadane, kolejność treści i opcjonalne elementy raportu.
-- `style/universityreport.sty` -- pakiety, typografia, polonizacja i nagłówek tytułowy.
-- `content/01-cel.tex` do `content/07-wnioski.tex` -- kolejne sekcje sprawozdania.
-- `content/00-abstract.tex`, `content/appendix-a.tex` -- opcjonalne streszczenie i załącznik.
-- `data/measurements.csv` -- demonstracyjne dane wspólne dla tabeli i wykresu.
-- `references.bib` -- bibliografia BibLaTeX.
-- `figures/` -- logo i własne ilustracje.
-- `latexmkrc` -- konfiguracja kompilacji lokalnej i Overleaf.
+Nie ma już `main.tex` w katalogu głównym. Każde ćwiczenie jest osobnym
+raportem, ma własne metadane i własny PDF. Zmiany wspólnego stylu wpływają
+na wszystkie raporty przy ponownej kompilacji.
 
-Domyślny układ: `article`, 11 pt, A4, marginesy boczne 25 mm,
-tytuł na pierwszej stronie, ciągła numeracja stron. Nie ma osobnej okładki,
-abstraktu ani spisu treści. Opcjonalne elementy włącza się w `main.tex`.
+Pierwszy raport zachowuje przykład z szablonu. Nie reprezentuje jeszcze
+rzeczywistych pomiarów ani zatwierdzonego tematu pierwszego laboratorium.
+Przed oddaniem zastąp dane demonstracyjne i uzupełnij metadane.
 
-## Metadane
-
-Edytuj wywołania w `main.tex`:
-
-| Polecenie | Znaczenie |
-|---|---|
-| `\reportinstitution{...}` | Uczelnia |
-| `\reportfaculty{...}` | Wydział |
-| `\reportprogramme{...}` | Kierunek |
-| `\reportcourse{...}` | Przedmiot |
-| `\reporttitle{...}` | Temat sprawozdania |
-| `\reportlabnumber{...}` | Numer ćwiczenia |
-| `\reportauthor{...}` | Autorzy, oddzieleni przecinkami |
-| `\reportgroup{...}` | Grupa |
-| `\reportinstructor{...}` | Prowadzący |
-| `\reportdate{...}` | Data ćwiczenia lub oddania; domyślnie `\today` |
-| `\reportlogo{...}` | Ścieżka do logo; `{}` wyłącza obraz |
-| `\reporttype{...}` | Rodzaj dokumentu |
-| `\reportsubtitle{...}` | Opcjonalny podtytuł |
-| `\reportsemester{...}` | Opcjonalny semestr |
-| `\reportmeta{...}` | Opcjonalne dodatkowe informacje |
-
-Puste pola tabeli metadanych są pomijane. Tytuł i autorzy trafiają też do
-właściwości PDF; używaj w nich zwykłego tekstu. Długie wartości w tabeli
-metadanych są zawijane. Wymień pola przykładowe przed oddaniem raportu.
-
-## Pisanie raportu
-
-Pliki zapisuj w UTF-8. Używaj `\section` i `\subsection`, zamiast `\chapter`.
-Dodaj sekcję przez utworzenie pliku w `content/` i dodanie `\input` w `main.tex`.
-W raporcie technicznym ustaw `\reporttype{Raport techniczny}` w `main.tex`.
-
-- Matematyka: `amsmath`, `mathtools`, `amsthm`, `libertinust1math`.
-  Nie dodawaj `amssymb`: symbole AMS zapewnia font matematyczny.
-- Jednostki: `\qty{1.25}{\metre}`, liczby: `\num{1.25}`;
-  wejściowa kropka jest prezentowana jako przecinek.
-- Tabele: `booktabs`, `tabularx`, kolumny `S` pakietu `siunitx`.
-- Wykresy: TikZ, PGFPlots (`compat=1.18`), `pgfplotstable`.
-  CSV używa przecinka między kolumnami i kropki dziesiętnej w danych.
-- Odwołania: `\label{...}`, `\cref{...}` i `\Cref{...}` z polskimi nazwami.
-- Cytowania: `\autocite{klucz}` lub `\textcite{klucz}`; styl `numeric-comp`,
-  sortowanie nazwisko--rok--tytuł z polską lokalizacją.
-- Kod: `listings`, z mapowaniem polskich liter w listingach.
-- Dostępne ramki: `keybox`, `examplebox`, `alertbox`.
-- Dla zgodności pozostały `widefigure` (obecnie szerokość tekstu)
-  i `\sidenote{...}` (obecnie przypis dolny).
-
-Dane i analiza akustyczna są wyłącznie demonstracją. Zastąp je rzeczywistymi
-wynikami, budżetem niepewności i literaturą związaną z ćwiczeniem.
-Bibliografia zawiera przykłady techniczne, nie bibliografię z akustyki.
-Logo można zastąpić plikiem PDF, PNG lub JPG.
-
-## Kompilacja lokalna
-
-Wymagane: pdfLaTeX, Biber, latexmk i zgodny zestaw pakietów z TeX Live/MacTeX
-lub MiKTeX. Zalecana pełna instalacja dystrybucji; instalacje minimalne
-mogą wymagać doinstalowania pakietów. Potrzebne są polskie wzorce dzielenia
-(`babel-polish` i konfiguracja języka polskiego), fonty Libertinus, Fira Sans,
-Fira Mono oraz pakiety wymienione w `style/universityreport.sty`.
-Wymagane `siunitx` 3 (polecenie `\qty`) i PGFPlots co najmniej 1.18.
-Biber i BibLaTeX powinny pochodzić z tej samej, spójnej dystrybucji.
+## Nowe ćwiczenie
 
 W katalogu głównym repozytorium:
 
 ```bash
-latexmk -pdf main.tex
+python3 scripts/report.py new 02-drgania-swobodne --number 2 --title "Drgania swobodne"
 ```
 
-Wynik: `.output/main.pdf`. PDF i pliki pomocnicze trafiają domyślnie do
-`.output/` dzięki konfiguracji `latexmkrc`. `latexmk` automatycznie uruchamia Biber i powtarza
-pdfLaTeX do ustabilizowania odwołań. Nie wymaga `shell-escape`.
+Polecenie kopiuje `template/`, wpisuje tytuł i numer oraz odmawia nadpisania
+istniejącego katalogu. Następnie uzupełnij autorów, grupę, prowadzącego i datę
+w nowym `main.tex`. Przedmiot jest już ustawiony na
+**Wibroakustyka w Technice i Środowisku 1**.
 
-Można również wskazać katalog wynikowy jawnie:
+Szablon zawiera dane i treści demonstracyjne do zastąpienia. W `content/`
+używaj `\section` i `\subsection`; dodawaj sekcje przez `\input` w `main.tex`.
+Opcjonalne streszczenie, spis treści i załącznik są wyłączone domyślnie.
+
+## Kompilacja
+
+Potrzebne są pdfLaTeX, Biber, latexmk i pakiety używane przez wspólny styl.
+Zalecana dystrybucja TeX Live / MacTeX lub MiKTeX z polskimi wzorcami dzielenia,
+fontami Libertinus i Fira, `siunitx` 3 oraz PGFPlots co najmniej 1.18.
+
+Z katalogu głównego:
 
 ```bash
-latexmk -pdf -outdir=.output main.tex
+python3 scripts/report.py build 01-pomiar-poziomu-cisnienia
 ```
 
-Równoważna sekwencja ręczna (uruchamiana z katalogu głównego):
+Lub przy narzędziach TeX dostępnych w `PATH`:
 
 ```bash
-mkdir -p .output
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.output main.tex
-biber --input-directory=.output --output-directory=.output main
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.output main.tex
-pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.output main.tex
+latexmk -pdf cwiczenia/01-pomiar-poziomu-cisnienia/main.tex
 ```
 
-Usuwanie plików pomocniczych: `latexmk -c main.tex`.
+Można też wejść do katalogu ćwiczenia i uruchomić `latexmk -pdf main.tex`.
+Wspólna konfiguracja automatycznie ustawia wyszukiwanie stylu i uruchamianie
+Biber. Budowanie z katalogu głównego przechodzi do katalogu danego raportu.
 
-## VS Code / LaTeX Workshop
+Wynik zawsze znajduje się przy ćwiczeniu:
+`cwiczenia/01-pomiar-poziomu-cisnienia/.output/main.pdf`.
+Do lokalnej kompilacji używaj latexmk, aby załadować wspólną konfigurację.
 
-Konfiguracja w `.vscode/settings.json` uruchamia pdfLaTeX + Biber przez
-`latexmk` i zapisuje wyniki do `.output/`. Na macOS szuka narzędzi najpierw
-w standardowym katalogu MacTeX `/Library/TeX/texbin`, następnie w lokalnej
-instalacji `.output/texlive/bin/universal-darwin` oraz standardowym `PATH`.
+### VS Code
 
-Na tym komputerze przygotowano lokalną instalację w `.output/texlive`.
-Jest ignorowana przez Git i nie jest częścią repozytorium ani archiwum
-szablonu. Na innym komputerze zainstaluj dystrybucję TeX zgodnie z opisem
-powyżej. Nie usuwaj całego `.output/`, jeżeli korzystasz z tej instalacji.
-Po zmianie ustawień w VS Code wykonaj **Developer: Reload Window**,
-a następnie **LaTeX Workshop: Build LaTeX project**.
+Otwórz całe repozytorium, potem `main.tex` wybranego ćwiczenia i uruchom
+**LaTeX Workshop: Build LaTeX project**. Receptura pracuje w katalogu
+wybranego raportu i zapisuje wyniki do jego `.output/`.
+Po zmianie ustawień wykonaj **Developer: Reload Window**.
+Jeśli otwierasz pojedynczy plik sekcji, zacznij od otwarcia odpowiedniego
+`main.tex`, aby rozszerzenie rozpoznało dokument główny.
 
-Błąd `spawn latexmk ENOENT` oznacza, że edytor nie znajduje programu
-`latexmk`; występuje przed rozpoczęciem kompilacji źródeł LaTeX.
+Na tym komputerze lokalny TeX jest w głównym `.output/texlive`.
+Nie jest śledzony przez Git. Na innym komputerze zainstaluj własną dystrybucję;
+konfiguracja obsługuje standardową ścieżkę MacTeX i typowe katalogi systemowe.
+Nie usuwaj całego głównego `.output/`, jeżeli korzystasz z lokalnego TeX.
+Pliki pomocnicze pojedynczego raportu można czyścić poleceniem
+`latexmk -c main.tex` uruchomionym w jego katalogu.
 
-## Overleaf
+## Dane i analiza
 
-1. Zaimportuj ZIP repozytorium z zachowaniem struktury katalogów.
-2. Ustaw główny dokument na `main.tex`, a kompilator na **pdfLaTeX**.
-3. Wybierz aktualną dostępną wersję TeX Live i uruchom kompilację.
+- `data/raw/`: zachowuj oryginalne pliki z aparatury bez ręcznych poprawek.
+- `analysis/`: umieść skrypty Python lub dokumenty Quarto.
+- `data/processed/`: zapisuj przeliczone dane.
+- `generated/`: zapisuj wygenerowane tabele `.tex`, wykresy `.pdf` i wartości
+  używane w tekście. Dołączaj je przez `\input` i `\includegraphics`.
+- `figures/`: przechowuj ilustracje danego ćwiczenia.
 
-Plik `latexmkrc` pozostaw w katalogu głównym. Backend Biber jest określony
-w stylu; nie należy przestawiać bibliografii na BibTeX.
-Po zmianie wersji TeX Live lub backendu wykonaj kompilację od zera
-(„Recompile from scratch”). Nie przesyłaj lokalnych plików pomocniczych.
+Na razie nie dodano zależności Python ani Quarto. Istniejąca tabela i wykres
+nadal pobierają dane bezpośrednio z `data/raw/measurements.csv`.
+Wygenerowane materiały potrzebne do kompilacji można zapisywać w Git;
+pliki tymczasowe i wynikowe PDF raportów pozostają w ignorowanych `.output/`.
 
-## Licencja
+## Overleaf / przekazanie pojedynczego raportu
 
-Kod szablonu jest dostępny na [licencji MIT](LICENSE),
-Copyright (c) 2026 Inscrive ApS. Informację o autorze i tekst licencji
-należy zachować przy dalszej dystrybucji. Pliki logo AGH nie stanowią
-przyznania praw do znaku uczelni.
+```bash
+python3 scripts/report.py export 01-pomiar-poziomu-cisnienia
+```
+
+Powstaje `.output/exports/01-pomiar-poziomu-cisnienia.zip`.
+Archiwum zawiera źródła ćwiczenia, dane, pliki analizy, własne ilustracje,
+wspólny styl, domyślne logo i licencję. Nie zawiera lokalnego TeX,
+plików ukrytych ani artefaktów kompilacji. Przy zmianie logo na inne wspólne
+lub dodaniu zewnętrznych zależności należy je również dołączyć do eksportu.
+
+Zaimportuj ZIP jako osobny projekt Overleaf, wybierz `main.tex`
+i kompilator **pdfLaTeX**. Eksport jest samodzielny: styl i logo znajdują
+się w katalogu głównym archiwum, a lokalne odwołania do repozytorium nie są
+potrzebne. Po zmianie danych ponownie wygeneruj materiały analizy i eksport.
+Nie edytuj wyeksportowanej kopii równolegle bez przeniesienia zmian do repo.
+
+## Pochodzenie i licencja
+
+Zachowano MIT, Copyright (c) 2026 Inscrive ApS. Układ nie jest oficjalnym
+wzorem wydziałowym. Logo AGH nie stanowi przyznania praw do znaku uczelni.

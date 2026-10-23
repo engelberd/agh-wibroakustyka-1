@@ -1,0 +1,4 @@
+# Shared build settings, loaded when building from this exercise.
+my $config = '../../latexmkrc';
+my $result = do $config;
+die "Cannot load $config: $@ $!" unless defined $result;

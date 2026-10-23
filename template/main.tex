@@ -1,0 +1,45 @@
+% AGH laboratory report. Engine: pdfLaTeX; bibliography: Biber.
+% Content lives in content/, presentation in shared/style/universityreport.sty.
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage{universityreport}
+\addbibresource{references.bib}
+\graphicspath{{figures/}{generated/}{../../figures/}{../figures/}}
+
+% Required metadata. Keep plain text in title and author for PDF properties.
+\reportinstitution{Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie}
+\reportfaculty{Wydział Inżynierii Mechanicznej i Robotyki}
+\reportprogramme{Inżynieria Akustyczna}
+\reportcourse{Wibroakustyka w Technice i Środowisku 1}
+\reporttitle{Temat ćwiczenia}
+\reportlabnumber{Numer ćwiczenia}
+\reportauthor{Imię Nazwisko, Imię Nazwisko}
+\reportgroup{Grupa 1}
+\reportinstructor{Tytuł, imię i nazwisko}
+\reportdate{\today} % Date of exercise/submission: replace when needed.
+
+% Optional metadata; empty values are hidden.
+\reportlogo{agh_small.jpg}
+\reporttype{Sprawozdanie laboratoryjne} % Or: Raport techniczny
+\reportsubtitle{}
+\reportsemester{}
+\reportmeta{}
+
+\begin{document}
+\makecoverpage
+% For longer technical reports, uncomment the optional elements:
+% \input{content/00-abstract}
+% \tableofcontents
+
+\input{content/01-cel}
+\input{content/02-teoria}
+\input{content/03-aparatura}
+\input{content/04-metodyka}
+\input{content/05-wyniki}
+\input{content/06-niepewnosc}
+\input{content/07-wnioski}
+\printbibliography[heading=bibintoc,title={Literatura}]
+
+% Optional supplementary material:
+% \appendix
+% \input{content/appendix-a}
+\end{document}
