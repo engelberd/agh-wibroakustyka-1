@@ -1,0 +1,37 @@
+\section{Wyniki pomiarów}
+\label{sec:wyniki}
+\Cref{tab:wyniki,fig:wyniki} przedstawiają tę samą serię danych
+z pliku \texttt{data/measurements.csv}. Jest to przykład powtórzeń
+w ustalonych warunkach, a nie poziomów przeznaczonych do sumowania.
+\begin{table}[htbp]
+  \centering
+  \caption{Demonstracyjna seria pomiarów.}
+  \label{tab:wyniki}
+  \pgfplotstabletypeset[
+    col sep=comma,
+    columns={measurement,level},
+    columns/measurement/.style={column name={Pomiar},column type=c},
+    columns/level/.style={column name={\multicolumn{1}{c}{$L_p$ (\unit{\decibel})}},
+      column type={S[table-format=2.1]},string type},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule}
+  ]{data/measurements.csv}
+\end{table}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.85\linewidth,height=45mm,
+      xlabel={Numer pomiaru},ylabel={$L_p$ (\unit{\decibel})},
+      xmin=0.5,xmax=5.5,ymin=69.5,ymax=70.5,xtick={1,2,3,4,5},
+      grid=major,grid style={hairline},
+      tick label style={font=\small},
+      /pgf/number format/use comma,
+    ]
+      \addplot[accent,mark=*,thick] table[
+        x=measurement,y=level,col sep=comma]{data/measurements.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Rozrzut demonstracyjnych wyników kolejnych powtórzeń.}
+  \label{fig:wyniki}
+\end{figure}

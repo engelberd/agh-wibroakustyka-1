@@ -1,0 +1,42 @@
+% =====================================================================
+%  PLACEHOLDER INSTITUTION LOGO  --  source file
+%  ---------------------------------------------------------------
+%  This generates figures/logo-placeholder.pdf.
+%  Replace that PDF with your own institution logo (PDF/PNG/JPG),
+%  or edit this file and run:  pdflatex logo-placeholder.tex
+% =====================================================================
+\documentclass[border=2pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.95]{FiraSans}
+\usepackage{tikz}
+\usepackage{accsupp}
+\usetikzlibrary{calc}
+
+\definecolor{logoink}{HTML}{111827}
+
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+  \sffamily
+  % --- mark: a simple neoclassical facade in a rounded square -------
+  \draw[logoink,line width=0.7] (0,0) rectangle ++(16,16);
+  \begin{scope}[shift={(0,0)}]
+    \fill[logoink] (3.2,3.0) rectangle ++(9.6,0.9);      % stylobate
+    \fill[logoink] (4.2,4.4) rectangle ++(1.5,6.2);      % column 1
+    \fill[logoink] (7.25,4.4) rectangle ++(1.5,6.2);     % column 2
+    \fill[logoink] (10.3,4.4) rectangle ++(1.5,6.2);     % column 3
+    \fill[logoink] (2.8,11.0) rectangle ++(10.4,0.8);    % architrave
+    \fill[logoink] (2.6,11.9) -- (8,14.6) -- (13.4,11.9) -- cycle; % pediment
+  \end{scope}
+  % --- wordmark ----------------------------------------------------
+  \node[anchor=base west,logoink,inner sep=0] at (20,9.6)
+        {\fontsize{11}{11}\selectfont\bfseries YOUR UNIVERSITY};
+  \draw[logoink,line width=0.35] (20,7.6) -- (63,7.6);
+  % Letterspaced, but tagged so copy/paste and screen readers get the
+  % plain words back instead of "F A C U L T Y".
+  \node[anchor=base west,logoink,inner sep=0] at (20,4.4)
+        {\fontsize{5.4}{5.4}\selectfont
+         \BeginAccSupp{method=escape,ActualText={FACULTY OR DEPARTMENT}}%
+         F\,A\,C\,U\,L\,T\,Y\ \ O\,R\ \ D\,E\,P\,A\,R\,T\,M\,E\,N\,T%
+         \EndAccSupp{}};
+\end{tikzpicture}
+\end{document}

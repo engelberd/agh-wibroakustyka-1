@@ -1,0 +1,13 @@
+% Optional: enable after \\appendix in main.tex.
+\section{Materiały uzupełniające}
+\label{sec:zalacznik}
+Zamieścić dodatkowe dane, obliczenia lub kod niezbędny do odtworzenia analizy.
+\begin{lstlisting}[language=Python,caption={Przykład obliczenia średniej i niepewności typu A.},label={lst:analiza}]
+import csv
+from statistics import mean, stdev
+from math import sqrt
+
+with open("data/measurements.csv", encoding="utf-8") as stream:
+    levels = [float(row["level"]) for row in csv.DictReader(stream)]
+print(mean(levels), stdev(levels) / sqrt(len(levels)))
+\end{lstlisting}

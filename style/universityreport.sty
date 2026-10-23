@@ -1,0 +1,341 @@
+% =====================================================================
+%  universityreport.sty
+%  A modern, fast-compiling academic report style for pdfLaTeX.
+%  ---------------------------------------------------------------
+%  Everything visual lives in this file. main.tex stays readable.
+%  The only things you normally need to touch are in SECTION 1.
+% =====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style/universityreport}[2026/10/23 v2.0 AGH compact laboratory report]
+
+% ---------------------------------------------------------------------
+%  1. BRAND  --  change these and the whole report follows
+% ---------------------------------------------------------------------
+\RequirePackage{xcolor}
+\definecolor{accent}    {HTML}{4F46E5} % structure only: rules, numbers
+\definecolor{accentdark}{HTML}{3730A3} % external links
+\definecolor{ink}       {HTML}{111827} % body text and headings
+\definecolor{muted}     {HTML}{4B5563} % captions, dates, metadata (7:1 on white)
+\definecolor{faint}     {HTML}{9CA3AF} % decoration that carries no information
+\definecolor{hairline}  {HTML}{E5E7EB} % thin rules and ghost numerals
+\definecolor{surface}   {HTML}{F5F6FB} % tinted box backgrounds
+\definecolor{success}   {HTML}{0F766E} % examplebox
+\definecolor{warning}   {HTML}{B45309} % alertbox
+
+% ---------------------------------------------------------------------
+%  2. TEXT FONTS  --  pdfLaTeX only, no fontspec, so compilation is fast
+%     Body : Libertinus Serif   Headings : Fira Sans   Code : Fira Mono
+%     (The matching Libertinus maths is loaded in section 4, after
+%      amsmath, which is the order libertinust1math requires.)
+% ---------------------------------------------------------------------
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{libertinus}
+\RequirePackage[scaled=0.94]{FiraSans}
+\RequirePackage[scaled=0.82]{FiraMono}
+\RequirePackage{microtype}
+\RequirePackage[main=polish,english]{babel}
+\RequirePackage[autostyle=true]{csquotes}
+
+% ---------------------------------------------------------------------
+%  3. PAGE GEOMETRY
+%     Compact A4 layout, with all figures inside the text area.
+\RequirePackage[a4paper,top=20mm,bottom=22mm,left=25mm,right=25mm,
+                headsep=10pt,headheight=23pt,footskip=24pt]{geometry}
+\RequirePackage{setspace}
+\setstretch{1.02}
+\setlength{\emergencystretch}{2em}  % soak up the odd overfull line
+\widowpenalty=10000                % never strand a line at the top
+\clubpenalty=10000                 % or at the bottom of a page
+\raggedbottom
+
+% ---------------------------------------------------------------------
+%  4. MATHS AND CORE PACKAGES
+% ---------------------------------------------------------------------
+\RequirePackage{amsmath,amsthm}
+\RequirePackage{mathtools}
+% Libertinus maths, so symbols match the body text instead of falling
+% back to Computer Modern. It supplies the AMS symbols itself, so
+% amssymb must NOT be loaded alongside it.
+\RequirePackage{libertinust1math}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{siunitx}
+\RequirePackage{enumitem}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{marginnote}
+\RequirePackage{accsupp}
+\RequirePackage[font=small,labelfont={bf,color=ink},
+                labelsep=period,justification=raggedright,
+                singlelinecheck=false]{caption}
+\RequirePackage{subcaption}
+\RequirePackage{tcolorbox}
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{pgfplotstable}
+\tcbuselibrary{skins,breakable}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit,backgrounds}
+\pgfplotsset{compat=1.18}
+
+% ---------------------------------------------------------------------
+%  5. HEADINGS
+%     Accent colour is reserved for structure. Running text stays black.
+% ---------------------------------------------------------------------
+\titleformat{\section}
+  {\normalfont\sffamily\bfseries\large\color{ink}}{\color{accent}\thesection}{0.7em}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\bfseries\normalsize\color{ink}}{\color{accent}\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\bfseries\small\color{ink}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{12pt}{5pt}
+\titlespacing*{\subsection}{0pt}{9pt}{4pt}
+
+% ---------------------------------------------------------------------
+%  6. HEADERS AND FOOTERS
+% ---------------------------------------------------------------------
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{main}{%
+  \fancyhf{}%
+  \fancyhead[L]{\sffamily\footnotesize\color{muted}\nouppercase{\rightmark}}%
+  \fancyhead[R]{\sffamily\footnotesize\color{muted}\thepage}%
+  \renewcommand{\headrule}{\color{hairline}\rule{\headwidth}{0.4pt}}%
+  \renewcommand{\headrulewidth}{0.4pt}%
+}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\sffamily\footnotesize\color{muted}\thepage}%
+  \renewcommand{\headrule}{}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\pagestyle{main}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+
+% ---------------------------------------------------------------------
+%  7. LISTS, TABLES, FLOATS
+% ---------------------------------------------------------------------
+\setlist[itemize]{leftmargin=1.3em,itemsep=2pt,topsep=4pt,label=\textcolor{accent}{\textbullet}}
+\setlist[enumerate]{leftmargin=1.5em,itemsep=2pt,topsep=4pt}
+\setlist[description]{font=\sffamily\bfseries\color{ink},leftmargin=1.3em}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{7pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\sisetup{
+  output-decimal-marker={,},
+  group-separator={\,},
+  range-phrase={\text{ do }},
+  list-final-separator={\text{ i }},
+  list-pair-separator={\text{ i }},
+  detect-weight=true,
+  detect-family=true,
+  table-align-text-after=false
+}
+
+% ---------------------------------------------------------------------
+%  8. CALLOUT BOXES AND THEOREMS
+%     One callout treatment, shared with the presentation template:
+%     a tinted panel with a coloured bar down the left edge.
+% ---------------------------------------------------------------------
+\newtcolorbox{keybox}[1][Najważniejsze]{%
+  enhanced,breakable,colback=surface,colframe=accent,
+  boxrule=0pt,leftrule=2.5pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,
+  fonttitle=\sffamily\bfseries\small\color{accent},
+  title={#1},attach title to upper=\par\medskip
+}
+
+% Same geometry, different colour. The presentation template uses this
+% exact treatment for its blocks, so a deck and its report match.
+\newtcolorbox{examplebox}[1][Przykład]{%
+  enhanced,breakable,colback=success!6,colframe=success,
+  boxrule=0pt,leftrule=2.6pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,
+  fonttitle=\sffamily\bfseries\small\color{success},
+  title={#1},attach title to upper=\par\medskip}
+\newtcolorbox{alertbox}[1][Uwaga]{%
+  enhanced,breakable,colback=warning!6,colframe=warning,
+  boxrule=0pt,leftrule=2.6pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt,
+  fonttitle=\sffamily\bfseries\small\color{warning},
+  title={#1},attach title to upper=\par\medskip}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definicja}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Twierdzenie}[section]
+\newtheorem{lemma}[theorem]{Lemat}
+\newtheorem{proposition}[theorem]{Stwierdzenie}
+\theoremstyle{remark}
+\newtheorem{remark}{Uwaga}[section]
+
+% ---------------------------------------------------------------------
+%  9. CODE LISTINGS
+% ---------------------------------------------------------------------
+\lstdefinestyle{clean}{
+  basicstyle=\ttfamily\footnotesize\color{ink},
+  keywordstyle=\color{accentdark}\bfseries,
+  commentstyle=\color{muted}\itshape,
+  stringstyle=\color{accentdark},
+  numbers=left,numberstyle=\ttfamily\scriptsize\color{muted},numbersep=10pt,
+  backgroundcolor=\color{surface},frame=none,framexleftmargin=8pt,
+  xleftmargin=16pt,xrightmargin=4pt,
+  breaklines=true,showstringspaces=false,tabsize=2,
+  aboveskip=12pt,belowskip=10pt,
+}
+\lstset{style=clean,
+  literate={ą}{{\k{a}}}1 {ć}{{\'{c}}}1 {ę}{{\k{e}}}1
+    {ł}{{\l{}}}1 {ń}{{\'{n}}}1 {ó}{{\'{o}}}1 {ś}{{\'{s}}}1
+    {ź}{{\'{z}}}1 {ż}{{\.{z}}}1 {Ą}{{\k{A}}}1 {Ć}{{\'{C}}}1
+    {Ę}{{\k{E}}}1 {Ł}{{\L{}}}1 {Ń}{{\'{N}}}1 {Ó}{{\'{O}}}1
+    {Ś}{{\'{S}}}1 {Ź}{{\'{Z}}}1 {Ż}{{\.{Z}}}1
+}
+\addto\captionspolish{\renewcommand{\lstlistingname}{Listing}}
+
+
+% ---------------------------------------------------------------------
+% 10. BIBLIOGRAPHY  (biblatex + biber)
+%     Switch style=numeric-comp to style=authoryear for humanities.
+% ---------------------------------------------------------------------
+\RequirePackage[backend=biber,style=numeric-comp,sorting=nyt,
+                giveninits=true,maxbibnames=6,minbibnames=6,
+                isbn=false,url=false,doi=true,sortlocale=pl_PL]{biblatex}
+\renewcommand*{\bibfont}{\small}
+\setlength{\bibitemsep}{0.55em}
+\DeclareFieldFormat{titlecase}{#1}
+
+% ---------------------------------------------------------------------
+% 11. LINKS AND CROSS-REFERENCES  (hyperref late, cleveref last)
+%     Internal references are black: a page speckled with coloured
+%     cross-references is tiring to read and collapses in greyscale
+%     print. Only genuine external links carry colour.
+%     To colour internal links instead, set linkcolor=accentdark below.
+% ---------------------------------------------------------------------
+\RequirePackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=ink,citecolor=ink,urlcolor=accentdark,
+            breaklinks=true,pdfborder={0 0 0},pdflang={pl-PL}}
+\urlstyle{same}
+\RequirePackage[nameinlink]{cleveref}
+\def\crefpairconjunction{ i }
+\def\crefmiddleconjunction{, }
+\def\creflastconjunction{ i }
+\def\crefpairgroupconjunction{ i }
+\def\crefmiddlegroupconjunction{, }
+\def\creflastgroupconjunction{ i }
+\def\crefrangeconjunction{ do }
+\crefname{appendix}{załącznik}{załączniki}
+\Crefname{appendix}{Załącznik}{Załączniki}
+\crefname{section}{punkt}{punkty}
+\Crefname{section}{Punkt}{Punkty}
+\crefname{subsection}{punkt}{punkty}
+\Crefname{subsection}{Punkt}{Punkty}
+\crefname{figure}{rys.}{rys.}
+\Crefname{figure}{Rysunek}{Rysunki}
+\crefname{table}{tab.}{tab.}
+\Crefname{table}{Tabela}{Tabele}
+\crefname{equation}{równanie}{równania}
+\Crefname{equation}{Równanie}{Równania}
+\crefname{definition}{definicja}{definicje}
+\Crefname{definition}{Definicja}{Definicje}
+\crefname{theorem}{twierdzenie}{twierdzenia}
+\Crefname{theorem}{Twierdzenie}{Twierdzenia}
+\crefname{lemma}{lemat}{lematy}
+\Crefname{lemma}{Lemat}{Lematy}
+\crefname{proposition}{stwierdzenie}{stwierdzenia}
+\Crefname{proposition}{Stwierdzenie}{Stwierdzenia}
+\crefname{remark}{uwaga}{uwagi}
+\Crefname{remark}{Uwaga}{Uwagi}
+\crefname{lstlisting}{listing}{listingi}
+\Crefname{lstlisting}{Listing}{Listingi}
+
+% ---------------------------------------------------------------------
+% 12. FIGURE HELPERS
+% Legacy helpers stay available without extending beyond the page.
+% ---------------------------------------------------------------------
+\newcommand{\sidenote}[1]{\footnote{#1}}
+\newlength{\fullwidth}
+\setlength{\fullwidth}{\textwidth}
+\newenvironment{widefigure}[1][htbp]
+  {\begin{figure}[#1]\centering}
+  {\end{figure}}
+
+% ---------------------------------------------------------------------
+% 13. TITLE METADATA AND COMPACT COVER
+% All values are configured in main.tex. Optional empty fields are hidden.
+% ---------------------------------------------------------------------
+\newcommand{\reporttype}[1]{\def\@reporttype{#1}}
+\newcommand{\reporttitle}[1]{\def\@reporttitle{#1}}
+\newcommand{\reportsubtitle}[1]{\def\@reportsubtitle{#1}}
+\newcommand{\reportauthor}[1]{\def\@reportauthor{#1}}
+\newcommand{\reportinstitution}[1]{\def\@reportinstitution{#1}}
+\newcommand{\reportfaculty}[1]{\def\@reportfaculty{#1}}
+\newcommand{\reportprogramme}[1]{\def\@reportprogramme{#1}}
+\newcommand{\reportcourse}[1]{\def\@reportcourse{#1}}
+\newcommand{\reportlabnumber}[1]{\def\@reportlabnumber{#1}}
+\newcommand{\reportgroup}[1]{\def\@reportgroup{#1}}
+\newcommand{\reportinstructor}[1]{\def\@reportinstructor{#1}}
+\newcommand{\reportdate}[1]{\def\@reportdate{#1}}
+\newcommand{\reportlogo}[1]{\def\@reportlogo{#1}}
+\newcommand{\reportsemester}[1]{\def\@reportsemester{#1}}
+\newcommand{\reportmeta}[1]{\def\@reportmeta{#1}}
+\reporttype{Sprawozdanie laboratoryjne}
+\reporttitle{Temat sprawozdania}\reportsubtitle{}\reportauthor{}
+\reportinstitution{Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie}
+\reportfaculty{Wydział Inżynierii Mechanicznej i Robotyki}
+\reportprogramme{Inżynieria Akustyczna}
+\reportcourse{}\reportlabnumber{}\reportgroup{}\reportinstructor{}
+\reportdate{\today}\reportlogo{}\reportsemester{}\reportmeta{}
+
+\AtBeginDocument{%
+  \hypersetup{pdftitle={\@reporttitle},pdfauthor={\@reportauthor},
+              pdfsubject={\@reportcourse},pdfcreator={pdfLaTeX}}%
+}
+\newcommand{\report@row}[2]{%
+  \ifx#2\@empty\expandafter\@gobbletwo
+  \else\expandafter\report@printrow\fi{#1}{#2}}
+\newcommand{\report@printrow}[2]{\textbf{#1} & #2\\}
+\newcommand{\makecoverpage}{%
+  \begingroup
+  \sffamily\color{ink}
+  \noindent\begin{minipage}[c]{0.13\textwidth}
+    \ifx\@reportlogo\@empty\else
+      \includegraphics[width=\linewidth,height=20mm,keepaspectratio]{\@reportlogo}%
+    \fi
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.84\textwidth}
+    {\small\bfseries\@reportinstitution\par}
+    {\small\@reportfaculty\par}
+    {\small Kierunek: \@reportprogramme\par}
+  \end{minipage}\par\medskip
+  {\noindent\small\color{muted}\@reporttype%
+    \ifx\@reportlabnumber\@empty\else\enspace\textbullet\enspace Ćwiczenie nr \@reportlabnumber\fi\par}
+  \smallskip
+  {\raggedright\Large\bfseries\@reporttitle\par}
+  \ifx\@reportsubtitle\@empty\else\smallskip{\small\@reportsubtitle\par}\fi
+  \medskip
+  {\small\noindent\begin{tabularx}{\textwidth}{@{}l L@{}}
+    \report@row{Przedmiot:}{\@reportcourse}
+    \report@row{Autorzy:}{\@reportauthor}
+    \report@row{Grupa:}{\@reportgroup}
+    \report@row{Prowadzący:}{\@reportinstructor}
+    \report@row{Data:}{\@reportdate}
+    \report@row{Semestr:}{\@reportsemester}
+    \report@row{Informacje dodatkowe:}{\@reportmeta}
+  \end{tabularx}\par}
+  \smallskip\noindent{\color{accent}\rule{\textwidth}{0.8pt}}\par
+  \endgroup
+  \thispagestyle{plain}
+}
+
+% ---------------------------------------------------------------------
+% 14. SMALL HELPERS
+% ---------------------------------------------------------------------
+% Front matter: roman page numbers, no running head.
+\newcommand{\frontmatterpages}{\clearpage\pagenumbering{roman}\pagestyle{plain}}
+% Main matter: arabic page numbers restart at 1, running head returns.
+\newcommand{\mainmatterpages}{\clearpage\pagenumbering{arabic}\pagestyle{main}}
+% Letterspaced text that still copies and reads back as one word.
+\newcommand{\tracked}[1]{\BeginAccSupp{method=escape,ActualText={#1}}%
+  \textls[180]{#1}\EndAccSupp{}}
+\newcommand{\todo}[1]{\textcolor{accentdark}{\sffamily\bfseries[TODO: #1]}}
+\providecommand{\diff}{\mathop{}\!\mathrm{d}}
+\endinput
