@@ -1,0 +1,32 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/.output",
+  "latex-workshop.latex.auxDir": "%OUTDIR%",
+  "latex-workshop.latex.recipe.default": "first",
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "/Library/TeX/texbin/latexmk",
+      "cwd": "%DIR%",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "-auxdir=%OUTDIR%",
+        "%DOCFILE_EXT%"
+      ],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (.output)",
+      "tools": ["latexmk"]
+    }
+  ]
+}
