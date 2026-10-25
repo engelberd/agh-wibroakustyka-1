@@ -1,0 +1,98 @@
+% Propozycja zastępująca content/04-metodyka.tex.
+% Nie jest włączona do main.tex. Przed włączeniem rozstrzygnąć uwagi poniżej.
+% Podstawa: instrukcja J. Piechowicza, lokalny konspekt, s. 2--4.
+% Dodać rzeczywisty wpis instrukcji do references.bib oraz odwołanie bibliograficzne.
+\section{Metodyka}
+\label{sec:metodyka}
+
+\subsection{Sposób wykonania pomiarów}
+Pomiary wykonano metodą próbkowania opisaną w instrukcji
+laboratoryjnej. Przed rozpoczęciem badań przeprowadzono oględziny
+obiektu i jego otoczenia oraz wybrano punkt pomiaru hałasu
+oraz punkt pomiaru tła akustycznego, przedstawione na
+rysunku~\ref{fig:punkty_pomiarowe}.
+Mikrofon w punkcie pomiaru hałasu umieszczono na wysokości
+$1{,}5\,\mathrm{m}$ nad gruntem, po północnej stronie stacji.
+
+Rejestrowano równoważny poziom dźwięku A w elementarnych
+przedziałach pomiarowych o czasie $t_0=10\,\mathrm{s}$.
+Zapisane pliki miernika SVAN~971 potwierdzają zastosowanie
+charakterystyki częstotliwościowej A i detektora Fast w pierwszym
+profilu pomiarowym oraz liniowego całkowania dla wyniku $L_{Aeq}$.
+Każdy plik zawiera wynik dla całego przedziału $10\,\mathrm{s}$
+oraz dziesięć rekordów rejestracji z krokiem $1\,\mathrm{s}$.
+Rekordów tych nie traktowano jako odrębnych próbek
+$10\,\mathrm{s}$.
+
+% KONIECZNE: potwierdzić przyczynę skrócenia t0 do 10 s.
+% Jeśli obserwacje to potwierdzają, dopisać:
+% Czas próbki skrócono do 10 s ze względu na przejazdy pojazdów,
+% pomiędzy którymi nie było możliwe wykonanie niezakłóconej próbki 60 s.
+% Bez potwierdzenia nie wpisywać tego zdania jako faktu.
+Zgodnie z instrukcją zastosowanie próbek $10\,\mathrm{s}$
+zamiast $60\,\mathrm{s}$ wymaga występowania okresowych zakłóceń
+uniemożliwiających wykonanie dłuższej próbki przy stałym hałasie
+badanego źródła. Uzasadnienie tego wyboru na podstawie obserwacji
+terenowych wymaga uzupełnienia dokumentacji ćwiczenia.
+
+\subsection{Kontrola liczby próbek}
+Dla każdej serii wyznacza się rozstęp wyników
+\begin{equation}
+ R=\max_k L_{Ak}-\min_k L_{Ak},
+\end{equation}
+gdzie $L_{Ak}$ oznacza poziom równoważny zmierzony w $k$-tej
+próbce o czasie $t_0$.
+Liczbę wykonanych próbek porównuje się z wymaganiami instrukcji:
+3 próbki dla $0<R\leq1\,\mathrm{dB}$,
+4 dla $1<R\leq1{,}5\,\mathrm{dB}$,
+5 dla $1{,}5<R\leq2\,\mathrm{dB}$,
+6 dla $2<R\leq2{,}5\,\mathrm{dB}$ oraz
+7 dla $2{,}5<R\leq3\,\mathrm{dB}$.
+Przy rozstępie większym niż $3\,\mathrm{dB}$ instrukcja
+przewiduje wydłużenie czasu próbki.
+Wyniki sprawdzenia liczebności serii należy przedstawić
+wraz z wynikami pomiarów, również w przypadku niespełnienia
+tego wymagania.
+
+\subsection{Wyznaczanie tła akustycznego}
+Ze względu na brak możliwości wyłączenia badanego obiektu
+pomiar tła wykonano po pomiarze zasadniczym, w odrębnym punkcie
+zaznaczonym na rysunku~\ref{fig:punkty_pomiarowe}.
+Tło powinno reprezentować dźwięki niezwiązane z badaną stacją,
+przy porównywalnym oddziaływaniu pozostałych źródeł.
+% UZUPEŁNIĆ na podstawie obserwacji: dlaczego punkt tła był
+% porównywalny (ulice, przesłonięcie stacji, odległości, pora, pogoda).
+% Potwierdzić przypisanie P04--P08 oraz P10--P14 przed dalszym opracowaniem.
+Ocena porównywalności punktów oraz przypisanie plików do serii
+zasadniczej i serii tła wymagają potwierdzenia na podstawie
+notatek terenowych.
+
+\subsection{Opracowanie wyników}
+Dla próbek o jednakowym czasie trwania średni poziom
+w serii wyznacza się przez uśrednienie energetyczne:
+\begin{equation}
+ L_{A\mathrm{sr}}=10\log_{10}\left(
+ \frac{1}{n}\sum_{k=1}^{n}10^{0{,}1L_{Ak}}\right).
+ \label{eq:srednia-energetyczna}
+\end{equation}
+Analogicznie wyznacza się średni poziom tła $L_{At}$
+z próbek przypisanych do pomiaru tła.
+Poziom związany z pracą badanego obiektu w rozpatrywanym
+przedziale otrzymuje się przez odejmowanie energetyczne:
+\begin{equation}
+ L_{Aek}=10\log_{10}\left(
+ 10^{0{,}1L_{A\mathrm{sr}}}-10^{0{,}1L_{At}}\right).
+ \label{eq:korekcja-tla}
+\end{equation}
+Zgodnie z instrukcją przy różnicy
+$L_{A\mathrm{sr}}-L_{At}<3\,\mathrm{dB}$
+poziom źródła wymaga wyznaczenia metodą obliczeniową;
+powyższego odejmowania nie traktuje się wówczas jako
+wystarczającego wyznaczenia wyniku.
+Przy różnicy większej niż $10\,\mathrm{dB}$ instrukcja
+dopuszcza pominięcie wpływu tła.
+
+Wynik uzyskany z krótkiej serii charakteryzuje badane warunki
+pracy i punkt pomiarowy. Odniesienie go do wskaźnika dla pory
+dnia lub nocy wymaga dodatkowej informacji o czasie pracy
+źródeł i reprezentatywności zarejestrowanej serii.
