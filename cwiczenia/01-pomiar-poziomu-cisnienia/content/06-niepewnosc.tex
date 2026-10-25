@@ -1,24 +1,28 @@
-\section{Analiza niepewności}
+\section{Niepewność i ograniczenia oceny}
 \label{sec:niepewnosc}
-Dla $n$ niezależnych powtórzeń tej samej wielkości, przy założeniu
-stabilności warunków, średnią i jej niepewność typu A oblicza się jako
-\begin{equation}
-  \overline{L}_p = \frac{1}{n}\sum_{i=1}^{n} L_{p,i},
-  \qquad
-  u_A(\overline{L}_p) =
-  \sqrt{\frac{\sum_{i=1}^{n}(L_{p,i}-\overline{L}_p)^2}{n(n-1)}}.
-  \label{eq:niepewnosc}
-\end{equation}
-Dla danych demonstracyjnych $n=5$, $\overline{L}_p=\qty{70.0}{\decibel}$
-i $u_A\approx\qty{0.07}{\decibel}$. Średnia arytmetyczna poziomów
-opisuje tu estymację z powtórzeń; nie zastępuje uśredniania energetycznego
-sygnałów zmiennych w czasie.
+Rozstęp próbek opisuje zmienność zarejestrowanych wyników,
+ale nie stanowi pełnej niepewności pomiaru. Przy ocenie wyniku
+po korekcji tła należy uwzględnić rozrzut obu serii, przyrząd,
+wzorcowanie, ustawienie mikrofonu, warunki propagacji i sposób
+wyznaczenia tła. Instrukcja laboratoryjna nie podaje szczegółowego
+algorytmu budżetu niepewności \autocite{piechowicz-konspekt}.
 
-Uzupełnić budżet niepewności o składniki typu B wynikające z przyrządu,
-kalibracji i metody. Przy niezależnych składnikach wyrażonych w jednostce
-wyniku można zastosować
+Dla modelu korekcji~\eqref{eq:korekcja-tla} współczynniki
+wrażliwości na poziom całkowity i tło wynoszą
 \begin{equation}
-  u_c = \sqrt{u_A^2+\sum_j u_{B,j}^2},\qquad U=k u_c.
+ c_m=\frac{10^{0{,}1L_{A\mathrm{sr}}}}
+ {10^{0{,}1L_{A\mathrm{sr}}}-10^{0{,}1L_{At}}},\qquad
+ c_t=-\frac{10^{0{,}1L_{At}}}
+ {10^{0{,}1L_{A\mathrm{sr}}}-10^{0{,}1L_{At}}}.
 \end{equation}
-Podać rozkłady, współczynniki wrażliwości i przyjęty współczynnik
-rozszerzenia $k$. Nie przypisywać poziomu ufności bez uzasadnienia.
+Wartości niepewności składowych i ich zależności trzeba ustalić
+na podstawie dokumentacji zestawu i zastosowanej procedury.
+Nie można bez uzasadnienia uznać wszystkich składników pomiaru
+przy stacji i tła za niezależne, ponieważ użyto tego samego zestawu.
+
+Nie wyznaczono liczbowej niepewności rozszerzonej: nie dysponowano
+świadectwem wzorcowania ani wynikami sprawdzenia toru w dniu
+pomiaru, a dokumentacja meteorologiczna i ocena porównywalności
+punktu tła są niepełne. Przyjęcie arbitralnego błędu miernika lub
+zerowej niepewności kalibracji nie byłoby uzasadnione.
+Zwiększenie liczby cyfr wyniku nie usuwa tych ograniczeń.

@@ -1,0 +1,12 @@
+{
+  "station_mean_dB": 52.738065723160204,
+  "background_mean_dB": 48.08015874001218,
+  "difference_dB": 4.657906983148024,
+  "corrected_dB": 50.919372182197584,
+  "station_range_dB": 1.4600000000000009,
+  "background_range_dB": 2.690000000000005,
+  "station_n": 5,
+  "background_n": 5,
+  "station_required_n": 4,
+  "background_required_n": 7
+}

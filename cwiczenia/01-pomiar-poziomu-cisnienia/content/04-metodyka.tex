@@ -1,8 +1,54 @@
 \section{Metodyka}
 \label{sec:metodyka}
-\begin{enumerate}
-  \item Wizualna ocena przedmiotu badań i otaczającej go przestrzeni.
-  \item Przygotowanie sprzętu pomiarowego do pomiaru i wybranie punktów pomiarowych.
-  \item Wykonanie serii pomiarów wykorzystując metodę próbkowania z przedziałem czasu $t_0 = 10\, \mathrm{s}$
-  \item Wykonanie pomiaru tła akustycznego.
-\end{enumerate}
+\subsection{Przebieg pomiarów}
+Po oględzinach obiektu i jego otoczenia wybrano stanowiska
+pomiaru hałasu oraz tła. Zespoły laboratoryjne realizowały różne
+warianty pomiaru; nasz zespół wykonywał próbki o czasie
+$t_0=10\,\mathrm{s}$. Zarejestrowano pięć próbek przy stacji
+oraz pięć próbek tła, z zastosowaniem osłony przeciwwietrznej.
+Pracy stacji nie przerywano.
+Dla każdej próbki przyjęto zarejestrowany przez miernik
+równoważny poziom dźwięku A, $L_{Aeq,10s}$.
+
+W instrukcji próbka $10\,\mathrm{s}$ jest przewidziana dla hałasu
+stałego, gdy okresowe zakłócenia uniemożliwiają wykonanie próbki
+$60\,\mathrm{s}$ między tymi zdarzeniami
+\autocite{piechowicz-konspekt}.
+
+
+\subsection{Obliczenia i kontrola liczby próbek}
+Dla każdej serii wyznaczono rozstęp
+\begin{equation}
+ R=\max L_{Ak}-\min L_{Ak},
+\end{equation}
+gdzie $L_{Ak}$ oznacza wynik $k$-tej próbki o czasie $t_0$.
+Liczbę próbek porównano z tabelą w instrukcji:
+\begin{center}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+$R$ [dB] & $(0;1]$ & $(1;1{,}5]$ & $(1{,}5;2]$ & $(2;2{,}5]$ & $(2{,}5;3]$ \\
+Wymagane $n$ & 3 & 4 & 5 & 6 & 7 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Przy $R>3\,\mathrm{dB}$ instrukcja przewiduje wydłużenie czasu
+próbki.
+
+Średnią dla próbek o jednakowym czasie trwania obliczono
+energetycznie:
+\begin{equation}
+ L_{A\mathrm{sr}}=10\log_{10}\left(
+ \frac{1}{n}\sum_{k=1}^{n}10^{0{,}1L_{Ak}}\right).
+ \label{eq:srednia-energetyczna}
+\end{equation}
+Analogicznie wyznaczono średni poziom tła $L_{At}$.
+Następnie obliczono różnicę $\Delta L=L_{A\mathrm{sr}}-L_{At}$
+i zastosowano korekcję:
+\begin{equation}
+ L_{Aek}=10\log_{10}\left(
+ 10^{0{,}1L_{A\mathrm{sr}}}-10^{0{,}1L_{At}}\right).
+ \label{eq:korekcja-tla}
+\end{equation}
+Instrukcja wymaga przy $\Delta L<3\,\mathrm{dB}$ zastosowania
+metody obliczeniowej, a przy $\Delta L>10\,\mathrm{dB}$ dopuszcza
+pominięcie tła.

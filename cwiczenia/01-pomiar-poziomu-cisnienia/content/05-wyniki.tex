@@ -1,37 +1,30 @@
 \section{Wyniki pomiarów}
 \label{sec:wyniki}
-\Cref{tab:wyniki,fig:wyniki} przedstawiają tę samą serię danych
-z pliku \texttt{data/raw/measurements.csv}. Jest to przykład powtórzeń
-w ustalonych warunkach, a nie poziomów przeznaczonych do sumowania.
+W tabeli~\ref{tab:wyniki} zestawiono wszystkie dostępne próbki
+zarejestrowane miernikiem. Każda próbka trwała $10\,\mathrm{s}$.
+Wartości odnoszą się do profilu A i liniowego całkowania Leq.
 \begin{table}[htbp]
-  \centering
-  \caption{Demonstracyjna seria pomiarów.}
-  \label{tab:wyniki}
-  \pgfplotstabletypeset[
-    col sep=comma,
-    columns={measurement,level},
-    columns/measurement/.style={column name={Pomiar},column type=c},
-    columns/level/.style={column name={\multicolumn{1}{c}{$L_p$ (\unit{\decibel})}},
-      column type={S[table-format=2.1]},string type},
-    every head row/.style={before row=\toprule,after row=\midrule},
-    every last row/.style={after row=\bottomrule}
-  ]{data/raw/measurements.csv}
+ \centering
+ \caption{Równoważne poziomy dźwięku A w próbkach $10\,\mathrm{s}$.}
+ \label{tab:wyniki}
+ \input{generated/probki-rows.tex}
 \end{table}
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[
-      width=0.85\linewidth,height=45mm,
-      xlabel={Numer pomiaru},ylabel={$L_p$ (\unit{\decibel})},
-      xmin=0.5,xmax=5.5,ymin=69.5,ymax=70.5,xtick={1,2,3,4,5},
-      grid=major,grid style={hairline},
-      tick label style={font=\small},
-      /pgf/number format/use comma,
-    ]
-      \addplot[accent,mark=*,thick] table[
-        x=measurement,y=level,col sep=comma]{data/raw/measurements.csv};
-    \end{axis}
-  \end{tikzpicture}
-  \caption{Rozrzut demonstracyjnych wyników kolejnych powtórzeń.}
-  \label{fig:wyniki}
-\end{figure}
+
+
+\begin{table}[htbp]
+ \centering
+ \caption{Opracowanie serii i sprawdzenie wymaganej liczby próbek.}
+ \label{tab:opracowanie}
+ \input{generated/podsumowanie-rows.tex}
+\end{table}
+Seria zasadnicza spełnia kryterium liczby próbek. Seria tła ma
+rozstęp $R=2{,}69\,\mathrm{dB}$, dla którego instrukcja wymaga
+siedmiu próbek; wykonano pięć i nie ma dodatkowych pomiarów.
+Nie można zatem uznać jej za serię spełniającą to kryterium.
+
+\input{generated/korekcja-wynik.tex}
+Ze względu na niepełną liczebność serii tła, brak sprawdzenia toru
+kalibratorem oraz brak pełnej dokumentacji warunków wynik ten
+należy traktować jako oszacowanie dla warunków ćwiczenia.
+Nie stanowi on podstawy do stwierdzenia dotrzymania lub przekroczenia
+poziomu dopuszczalnego na terenie chronionym przed hałasem.
