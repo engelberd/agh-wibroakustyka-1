@@ -2,9 +2,13 @@
 % Content lives in content/, presentation in shared/style/universityreport.sty.
 \documentclass[11pt,a4paper,oneside]{article}
 \usepackage{universityreport}
+\usepackage{hyperref}
 \addbibresource{references.bib}
 \graphicspath{{figures/}{generated/}{../../figures/}{../figures/}}
 \usepackage{float}
+% Jednolite akapity: bez wcięcia, z niewielkim odstępem pionowym.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2\baselineskip plus 1pt minus 1pt}
 
 % Required metadata. Keep plain text in title and author for PDF properties.
 \reportinstitution{Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie}
