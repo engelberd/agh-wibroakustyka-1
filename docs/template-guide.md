@@ -22,7 +22,9 @@ Zachowano oryginalną [licencję MIT](LICENSE) i informację o autorze.
 - `latexmkrc` -- konfiguracja kompilacji lokalnej i Overleaf.
 
 Domyślny układ: `article`, 11 pt, A4, marginesy boczne 25 mm,
-tytuł na pierwszej stronie, ciągła numeracja stron. Nie ma osobnej okładki,
+tytuł na pierwszej stronie, ciągła numeracja stron. Akapity nie mają wcięcia i są oddzielone niewielkim
+odstępem (`0.2\baselineskip plus 1pt minus 1pt`). Pakiet `float` udostępnia
+pozycjonowanie `[H]`; `hyperref` jest już ładowany przez wspólny styl. Nie ma osobnej okładki,
 abstraktu ani spisu treści. Opcjonalne elementy włącza się w `main.tex`.
 
 ## Metadane

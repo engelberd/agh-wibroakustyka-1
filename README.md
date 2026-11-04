@@ -13,7 +13,7 @@ shared/style/universityreport.sty   wspólny wygląd wszystkich raportów
 figures/                          wspólne logo i ilustracje
 template/                         pliki startowe nowego ćwiczenia
 cwiczenia/
-  01-pomiar-poziomu-cisnienia/     pierwsze ćwiczenie (na razie demonstracja)
+  01-halas-obiektu-przemyslowego/     hałas obiektu przemysłowego
     main.tex                      metadane i kolejność sekcji
     latexmkrc                     odwołanie do wspólnej konfiguracji
     references.bib                bibliografia danego raportu
@@ -33,9 +33,10 @@ Nie ma już `main.tex` w katalogu głównym. Każde ćwiczenie jest osobnym
 raportem, ma własne metadane i własny PDF. Zmiany wspólnego stylu wpływają
 na wszystkie raporty przy ponownej kompilacji.
 
-Pierwszy raport zachowuje przykład z szablonu. Nie reprezentuje jeszcze
-rzeczywistych pomiarów ani zatwierdzonego tematu pierwszego laboratorium.
-Przed oddaniem zastąp dane demonstracyjne i uzupełnij metadane.
+Raport 1 zawiera opracowanie ćwiczenia „Hałas obiektu przemysłowego - pomiary
+w środowisku”. Raport 2, `cwiczenia/02-wyznaczanie-poziomu-mocy-akustycznej/`,
+łączy kwalifikację pomieszczenia i pomiar mocy akustycznej; zawiera konspekty
+oraz szkielet do uzupełnienia rzeczywistymi danymi.
 
 ## Nowe ćwiczenie
 
@@ -46,13 +47,16 @@ python3 scripts/report.py new 02-drgania-swobodne --number 2 --title "Drgania sw
 ```
 
 Polecenie kopiuje `template/`, wpisuje tytuł i numer oraz odmawia nadpisania
-istniejącego katalogu. Następnie uzupełnij autorów, grupę, prowadzącego i datę
-w nowym `main.tex`. Przedmiot jest już ustawiony na
+istniejącego katalogu. Szablon zachowuje autorów, grupę 2 i prowadzącego z ćwiczenia 1.
+Sprawdź te dane i ustaw datę w nowym `main.tex`. Przedmiot jest już ustawiony na
 **Wibroakustyka w Technice i Środowisku 1**.
 
 Szablon zawiera dane i treści demonstracyjne do zastąpienia. W `content/`
 używaj `\section` i `\subsection`; dodawaj sekcje przez `\input` w `main.tex`.
 Opcjonalne streszczenie, spis treści i załącznik są wyłączone domyślnie.
+Wspólny styl zapewnia akapity bez wcięcia, z odstępem
+`0.2\baselineskip plus 1pt minus 1pt`, oraz pakiet `float` dla pozycji `[H]`.
+Pakiet `hyperref` jest już ładowany przez styl; nie trzeba go dodawać w raporcie.
 
 ## Kompilacja
 
@@ -63,13 +67,13 @@ fontami Libertinus i Fira, `siunitx` 3 oraz PGFPlots co najmniej 1.18.
 Z katalogu głównego:
 
 ```bash
-python3 scripts/report.py build 01-pomiar-poziomu-cisnienia
+python3 scripts/report.py build 01-halas-obiektu-przemyslowego
 ```
 
 Lub przy narzędziach TeX dostępnych w `PATH`:
 
 ```bash
-latexmk -pdf cwiczenia/01-pomiar-poziomu-cisnienia/main.tex
+latexmk -pdf cwiczenia/01-halas-obiektu-przemyslowego/main.tex
 ```
 
 Można też wejść do katalogu ćwiczenia i uruchomić `latexmk -pdf main.tex`.
@@ -77,7 +81,7 @@ Wspólna konfiguracja automatycznie ustawia wyszukiwanie stylu i uruchamianie
 Biber. Budowanie z katalogu głównego przechodzi do katalogu danego raportu.
 
 Wynik zawsze znajduje się przy ćwiczeniu:
-`cwiczenia/01-pomiar-poziomu-cisnienia/.output/main.pdf`.
+`cwiczenia/01-halas-obiektu-przemyslowego/.output/main.pdf`.
 Do lokalnej kompilacji używaj latexmk, aby załadować wspólną konfigurację.
 
 ### VS Code
@@ -105,18 +109,19 @@ Pliki pomocnicze pojedynczego raportu można czyścić poleceniem
   używane w tekście. Dołączaj je przez `\input` i `\includegraphics`.
 - `figures/`: przechowuj ilustracje danego ćwiczenia.
 
-Na razie nie dodano zależności Python ani Quarto. Istniejąca tabela i wykres
-nadal pobierają dane bezpośrednio z `data/raw/measurements.csv`.
+Szablonowa tabela i wykres pobierają dane demonstracyjne z
+`data/raw/measurements.csv`. Nowy raport 2 nie zawiera przykładowych pomiarów.
+Skrypty analizy ćwiczenia 1 znajdują się w jego katalogu `analysis/`.
 Wygenerowane materiały potrzebne do kompilacji można zapisywać w Git;
 pliki tymczasowe i wynikowe PDF raportów pozostają w ignorowanych `.output/`.
 
 ## Overleaf / przekazanie pojedynczego raportu
 
 ```bash
-python3 scripts/report.py export 01-pomiar-poziomu-cisnienia
+python3 scripts/report.py export 01-halas-obiektu-przemyslowego
 ```
 
-Powstaje `.output/exports/01-pomiar-poziomu-cisnienia.zip`.
+Powstaje `.output/exports/01-halas-obiektu-przemyslowego.zip`.
 Archiwum zawiera źródła ćwiczenia, dane, pliki analizy, własne ilustracje,
 wspólny styl, domyślne logo i licencję. Nie zawiera lokalnego TeX,
 plików ukrytych ani artefaktów kompilacji. Przy zmianie logo na inne wspólne

@@ -44,6 +44,9 @@
                 headsep=10pt,headheight=23pt,footskip=24pt]{geometry}
 \RequirePackage{setspace}
 \setstretch{1.02}
+% Jednolite akapity we wszystkich raportach.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2\baselineskip plus 1pt minus 1pt}
 \setlength{\emergencystretch}{2em}  % soak up the odd overfull line
 \widowpenalty=10000                % never strand a line at the top
 \clubpenalty=10000                 % or at the bottom of a page
@@ -59,6 +62,7 @@
 % amssymb must NOT be loaded alongside it.
 \RequirePackage{libertinust1math}
 \RequirePackage{graphicx}
+\RequirePackage{float} % Opcjonalne pozycjonowanie tabel i rysunków [H].
 \RequirePackage{booktabs}
 \RequirePackage{tabularx}
 \RequirePackage{siunitx}
