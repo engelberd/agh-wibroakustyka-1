@@ -1,0 +1,34 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.9,every node/.style={font=\scriptsize}]
+\begin{scope}
+\draw[dashed,accent,thick] (0,0) rectangle (3,2.7);
+\filldraw[fill=gray!20] (1.2,1.15) rectangle (1.8,1.55);
+\node at (1.5,3.1) {Środek};
+\node[below] at (1.5,0) {$X=2{,}48$ m};
+\node[rotate=90,above] at (0,1.35) {$Y=2{,}26$ m};
+\end{scope}
+\begin{scope}[xshift=4.5cm]
+\draw[dashed,accent,thick] (0,0) rectangle (3,1.7);
+\draw[very thick] (-0.15,1.7)--(3.15,1.7);
+\filldraw[fill=gray!20] (1.2,1.3) rectangle (1.8,1.7);
+\node at (1.5,3.1) {Ściana};
+\node[below] at (1.5,0) {$X=2{,}48$ m};
+\node[rotate=90,above] at (0,0.85) {$Y=1{,}26$ m};
+\end{scope}
+\begin{scope}[xshift=9cm]
+\draw[dashed,accent,thick] (0,0) rectangle (2,1.7);
+\draw[very thick] (-0.15,1.7)--(2.15,1.7);
+\draw[very thick] (0,-0.15)--(0,1.85);
+\filldraw[fill=gray!20] (0,1.3) rectangle (0.6,1.7);
+\node at (1,3.1) {Róg};
+\node[below] at (1,0) {$X=1{,}48$ m};
+\node[rotate=90,above] at (2,0.85) {$Y=1{,}26$ m};
+\end{scope}
+\end{tikzpicture}
+\caption{Schemat obwiedni w rzucie z góry, bez zachowania skali.
+Szare pole oznacza źródło, linie grube ściany odbijające, a przerywane
+obwiednię pomiarową. Wysokość każdej obwiedni $H=1{,}18$ m.
+Rysunek przedstawia model obliczeniowy, nie odtworzone współrzędne mikrofonów.}
+\label{fig:geometria}
+\end{figure}

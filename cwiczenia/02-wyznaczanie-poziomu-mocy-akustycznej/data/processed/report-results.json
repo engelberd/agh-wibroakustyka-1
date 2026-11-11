@@ -13,5 +13,37 @@
     "rog": 85.85281227834076,
     "sciana": 84.43521350144492
   },
-  "notes": "Średnie energetyczne LAeq z SVL przy jednakowych wagach punktów. Brak zatwierdzonej geometrii ściany i rogu. Nie obliczono końcowego LWA."
+  "estimates": {
+    "srodek": {
+      "S_m2": 16.791199999999996,
+      "LAeq_dB": 83.53982471589079,
+      "background_dB": 27.65,
+      "delta_L_dB": 55.88982471589079,
+      "K1A_dB": 0,
+      "K2A_dB": 5.682762876221177,
+      "LWA_estimate_dB": 90.10787918506169,
+      "source_points": 5
+    },
+    "sciana": {
+      "S_m2": 9.024799999999999,
+      "LAeq_dB": 84.43521350144492,
+      "background_dB": 27.65,
+      "delta_L_dB": 56.78521350144492,
+      "K1A_dB": 0,
+      "K2A_dB": 3.894347112467367,
+      "LWA_estimate_dB": 90.09524225114362,
+      "source_points": 3
+    },
+    "rog": {
+      "S_m2": 5.098,
+      "LAeq_dB": 85.85281227834076,
+      "background_dB": 27.65,
+      "delta_L_dB": 58.202812278340765,
+      "K1A_dB": 0,
+      "K2A_dB": 2.6005795501985807,
+      "LWA_estimate_dB": 90.32623103947468,
+      "source_points": 3
+    }
+  },
+  "notes": "Model: contact with reflecting planes, d=1 m, long side against wall, equal point weights, common P38 background. Wall has only three confirmed points. Estimates do not establish full ISO conformity."
 }

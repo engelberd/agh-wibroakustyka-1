@@ -5,8 +5,10 @@ oraz po trzy przy źródle w rogu i przy ścianie. Rejestrację P38 przypisano
 do tła; nie wchodzi ona do średniej poziomów pracującego źródła.
 Określenia ścian w tabeli zachowują nazwy z notatek i wskazują kierunki
 punktów w ustawieniu środkowym, a nie osobne położenia odkurzacza.
-\todo{Dodać szkice trzech ustawień, współrzędne punktów, odległości od
-źródła i ścian, czasy pomiarów oraz przypisanie punktów P50--P55.}
+Dla środka zidentyfikowano punkt nad źródłem i cztery kierunki boczne.
+Dla rogu i ściany zachowano kolejność rejestracji; dokładnych współrzędnych
+mikrofonów nie odtworzono. Nie dopisywano punktów na podstawie podobieństwa
+poziomu dźwięku.
 
 \subsection{Zestawienie pomiarów}
 Wartości $L_{Aeq}$ odczytano z plików SVL miernika SVAN 971.
@@ -60,19 +62,41 @@ $\Delta L_A=\overline L_{A,\text{źr+tło}}-\overline L_{A,\text{tło}}$
 oraz $K_{1A}=-10\lg(1-10^{-0{,}1\Delta L_A})$ w zakresie wskazanym
 w konspekcie. Dla $\Delta L_A>\qty{10}{\decibel}$ konspekt przyjmuje
 $K_{1A}=0$. Przy różnicy poniżej \qty{3}{\decibel} kryterium tła nie jest
-spełnione. Poziom $L_{Aeq}$ tła P38 wynosi \qty{27.65}{\decibel} i jest o ponad \qty{50}{\decibel} niższa od średniej
+spełnione. Poziom $L_{Aeq}$ tła P38 wynosi \qty{27.65}{\decibel} i jest o ponad \qty{50}{\decibel} niższy od średniej
 dla środka, lecz pojedynczy pomiar tła nie potwierdza jego rozkładu na
 całej powierzchni ani warunków przy ścianie i w rogu.
 
-\todo{Sprawdzić schemat punktów względem konspektu: podaje on co najmniej cztery punkty, podczas gdy przy ścianie i w rogu zanotowano po trzy. Uzasadnić zastosowany układ przy dodatkowych płaszczyznach odbijających. Nie deklarować zgodności metody wyłącznie na podstawie liczby pomiarów.}
+Seria przy ścianie zawiera trzy potwierdzone punkty. Nie zidentyfikowano
+czwartego punktu na podstawie zachowanych plików. Jest to ograniczenie
+próbkowania powierzchni, którego nie usuwa samo uśrednienie wyników.
 
 \subsection{Przeliczenie na poziom mocy}
-Po zatwierdzeniu geometrii i reprezentatywności tła:
+W przyjętym modelu obliczeniowym zastosowano zależność:
 \begin{equation}
 L_{WA}=\overline L_{A,\text{źr+tło}}-K_{1A}-K_{2A}
 +10\lg\left(\frac{S}{S_0}\right),\qquad S_0=\qty{1}{\metre\squared}.
 \end{equation}
-\todo{Uzupełnić tabelę końcową dla trzech ustawień: powierzchnia,
-średnia A, tło, poprawki, poziom mocy i ocena niepewności.}
-Nie przenoszono pola powierzchni dla środka do pozostałych ustawień.
-Różnica średnich ciśnienia nie oznacza bezpośrednio różnicy mocy źródła.
+
+Wyniki zestawiono przy wspólnym tle P38, jednakowych wagach punktów
+oraz geometrii opisanej w części 1. Przeniesienie pomiaru tła na pozostałe
+ustawienia jest założeniem opracowania; duża różnica poziomów wskazuje
+na pomijalny wpływ tego tła przy założeniu jego stałości.
+\begin{table}[H]
+\centering\small
+\caption{Oszacowanie poziomu mocy A; wynik przy ścianie oparty na trzech punktach.}
+\begin{tabular}{@{}l c r r r r r@{}}
+\toprule
+Położenie & $n$ & $S$ (m$^2$) & $\overline L_A$ & $K_{1A}$ & $K_{2A}$ & $L_{WA}$\\
+ & & & \multicolumn{4}{c}{dB}\\
+\midrule
+\input{generated/final-rows}
+\end{tabular}
+\end{table}
+Dla środka przykładowe przeliczenie daje:
+\begin{equation}
+L_{WA}=83{,}54-0-5{,}68+10\lg(16{,}7912)
+\approx\qty{90.11}{\decibel}.
+\end{equation}
+Różnica największego i najmniejszego oszacowania wynosi około
+\qty{0.23}{\decibel}. Nie stanowi to dowodu tak małej niepewności pomiaru:
+wszystkie wyniki korzystają z tego samego przybliżenia chłonności i tła.

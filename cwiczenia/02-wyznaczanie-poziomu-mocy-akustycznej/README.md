@@ -1,7 +1,7 @@
 # Wyznaczanie poziomu mocy akustycznej
 
 Raport ma dwie numerowane części: kwalifikację pomieszczenia metodą
-przybliżoną (alfa=0,15) oraz wyznaczanie mocy dla środka, ściany i rogu.
+przybliżoną (alfa=0,15) oraz oszacowanie mocy dla środka, ściany i rogu.
 Treść edytuj w `content/02-kwalifikacja.tex` i `content/04-moc.tex`.
 
 Notatki z przypisaniem plików: `data/raw/notatki-pomiarowe.csv`.
@@ -23,4 +23,8 @@ z dokładnością do zaokrąglenia. Profile A/C/Z i czas 15 s potwierdzono w nag
 Eksport obejmuje `svl_summary.csv`, `svl_logger_1s.csv` i `svl_metadata.json`.
 Parser kontroluje granice bloków, długości danych, konfigurację profili, flagi
 przeciążenia, liczbę rekordów i zgodność średnich A/C/Z oraz LAE z czasem.
-Końcowy LWA wymaga zatwierdzenia geometrii i reprezentatywności tła.
+Wyniki: około 90,11 dB (środek), 90,10 dB (ściana), 90,33 dB (róg).
+Model: d=1 m, źródło dosunięte do przegród, dłuższy bok przy ścianie,
+równe wagi punktów i wspólne tło P38. Przy ścianie są trzy potwierdzone
+punkty; nie dopisywano czwartego. Nie potwierdzono pełnej zgodności normowej.
+Pełny przegląd plików: `analysis/audit_svl.py` i `data/processed/svl-audit.csv`.

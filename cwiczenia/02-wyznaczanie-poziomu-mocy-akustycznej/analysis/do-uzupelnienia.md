@@ -1,16 +1,17 @@
-# Ustalenia przed opracowaniem końcowym
+# Stan opracowania i ograniczenia
 
-1. Potwierdzić leżące ustawienie: podstawa 48 × 26 cm, wysokość 18 cm.
-2. Uzupełnić szkic pokoju i współrzędne P37, P39–P42 oraz P50–P55.
-3. Wyznaczyć powierzchnie przy ścianie i w rogu; ustalić orientację odkurzacza
-   i odległości od płaszczyzn. Uzasadnić układ trzech punktów.
-4. Profile A/C/Z i LAeq potwierdzone w SVL; notatki odpowiadają LAE.
-   Przejrzeć eksport `svl_summary.csv`, w tym porównanie notatek z LAE.
-5. P38 to jedyne przypisane tło; ustalić, czy obowiązuje wszystkie ustawienia.
-6. Uzupełnić aparaturę, kalibrację, czas pomiaru, warunki pracy i datę zajęć.
-7. Dodać widma tercjowe, poziomy liniowe/A i niepewność zgodnie z zakresem
-   faktycznie wykonanych pomiarów. Pozostałych SVL nie przypisywać automatycznie.
+Raport opracowano na podstawie 12 przypisanych rejestracji SVL.
+Model źródła: podstawa 48 × 26 cm, wysokość 18 cm, d=1 m,
+dłuższy bok przylegający do ściany (potwierdzenie użytkownika).
+Dla rogu przyjęto dosunięcie do dwóch ścian. Wspólne tło: P38.
 
-Podstawa obliczeń: LAeq z SVL; przypisanie punktów według użytkownika.
-Konspekt kwalifikacji przewiduje także pomiar pogłosu i powierzchnię półsferyczną;
-wykonany wariant bazuje na przybliżeniu z alfa=0,15. Odnotować uzgodniony zakres.
+Nie udało się zidentyfikować czwartego punktu przy ścianie.
+P52 to punkt rogu zgodnie z notatkami; P56 jest skrócony i ponad dwie
+godziny późniejszy, P57 również należy do późniejszej sesji.
+Szczegóły w `przeglad-czwartego-punktu.md` i `svl-audit.csv`.
+
+Wyniki są oszacowaniem orientacyjnym. Ograniczenia: nieodtworzone
+współrzędne mikrofonów i wagi pól, brak niezależnego pomiaru tła dla
+każdego ustawienia, przybliżenie alfa=0,15 oraz brak pełnego budżetu
+niepewności. W raporcie nie zadeklarowano pełnej zgodności normowej.
+Dalsza poprawa wymaga protokołu punktów lub dodatkowych pomiarów.
