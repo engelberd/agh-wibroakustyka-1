@@ -1,0 +1,34 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.93,every node/.style={font=\scriptsize}]
+\begin{scope}
+\draw[thick] (0,0) rectangle (6,3.75);
+\node at (3,4.15) {Ustawienie 1};
+\fill[accent] (0.8,1.88) circle (0.10);
+\node[below] at (0.8,1.7) {$M_1$};
+\foreach \x/\y/\n in {3.7/0.8/1,4.9/0.8/2,3.7/1.88/3,4.9/1.88/4,3.7/2.95/5,4.9/2.95/6}{
+  \draw[fill=gray!20] (\x-0.12,\y-0.12) rectangle (\x+0.12,\y+0.12);
+  \node[above] at (\x,\y+0.15) {$G_{\n}$};
+}
+\draw[<->] (0,-0.3)--(6,-0.3) node[midway,below] {8 m};
+\node[rotate=90] at (-0.35,1.88) {5 m};
+\end{scope}
+\begin{scope}[xshift=7.1cm]
+\draw[thick] (0,0) rectangle (6,3.75);
+\node at (3,4.15) {Ustawienie 2};
+\fill[accent] (5.2,1.88) circle (0.10);
+\node[below] at (5.2,1.7) {$M_2$};
+\foreach \x/\y/\n in {1.1/0.8/1,2.3/0.8/2,1.1/1.88/3,2.3/1.88/4,1.1/2.95/5,2.3/2.95/6}{
+  \draw[fill=gray!20] (\x-0.12,\y-0.12) rectangle (\x+0.12,\y+0.12);
+  \node[above] at (\x,\y+0.15) {$G_{\n}$};
+}
+\draw[<->] (0,-0.3)--(6,-0.3) node[midway,below] {8 m};
+\end{scope}
+\end{tikzpicture}
+\caption{Dwa ustawienia pomiaru pogłosu w rzucie z góry.
+Koło oznacza mikrofon, kwadraty sześć kolejnych położeń głośnika
+(nie sześć źródeł pracujących jednocześnie). Po zmianie ustawienia
+zamieniono strony pomieszczenia. Układ punktów jest poglądowy:
+rysunek nie określa zmierzonych odległości ani dokładnej kolejności ruchu.}
+\label{fig:poglos-ustawienia}
+\end{figure}

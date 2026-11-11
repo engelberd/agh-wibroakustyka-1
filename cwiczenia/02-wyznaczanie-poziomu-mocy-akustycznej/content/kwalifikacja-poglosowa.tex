@@ -1,0 +1,101 @@
+\subsection{Kwalifikacja metodą pogłosową: układ i opracowanie}
+Jako niezależne porównanie z oszacowaniem $A=\alpha S_v$ wykorzystano
+czasy pogłosu z 12 plików w katalogu
+\texttt{data/raw/grupa 1 Wibro tech 11 30/}.
+Zgodnie z przebiegiem ćwiczenia zastosowano dwa ustawienia mikrofonu.
+Dla każdego z nich głośnik ustawiano kolejno w sześciu położeniach
+po przeciwnej stronie pomieszczenia; następnie zamieniono strony.
+Serię plików \texttt{z1m1--z1m6} przypisano do pierwszego ustawienia,
+a \texttt{z2m1--z2m6} do drugiego, zgodnie z opisem układu pomiarowego.
+Nazwy plików zachowano, a oznaczenia $M_1$, $M_2$ i $G_1$--$G_6$
+na schemacie służą opisowi fizycznych położeń.
+\input{content/poglos-schematy}
+
+Eksporty zawierają EDT, T10, T15, T20, T30 i RT oraz współczynniki
+korelacji regresji. Do porównania przyjęto jednolicie parametr T20,
+aby nie mieszać różnych zakresów regresji pomiędzy częstotliwościami.
+T20 jest estymacją czasu zaniku o 60 dB na podstawie nachylenia
+w zakresie od $-5$ do $-25$ dB; wartości z eksportu nie mnoży się
+ponownie przez trzy \autocite{bkReverb}.
+Czasy uśredniono arytmetycznie po 12 kombinacjach położeń:
+\begin{equation}
+\overline T(f)=\frac{1}{12}\sum_{j=1}^{2}\sum_{i=1}^{6}T_{20,ji}(f).
+\end{equation}
+To średnia przestrzenna, a nie uśrednianie energetyczne poziomów dźwięku.
+Sam eksport nie zawiera przebiegów zaniku ani pełnych informacji
+o wzbudzeniu i torze pomiarowym, dlatego nie odtwarzano ich z domysłu.
+
+\subsection{Czasy pogłosu i chłonność}
+Pliki zawierają pasma tercjowe od 25 Hz do 20 kHz.
+W tabeli pokazano wybrane pasma o częstotliwościach środkowych
+125--8000 Hz; nie są to wyniki analizy oktawowej.
+Nie uśredniano czasów trzech tercji w celu zastąpienia pomiaru oktawowego.
+Komplet wartości, w tym braki oznaczone w eksporcie przez \texttt{--},
+zachowano w przetworzonym zestawieniu danych.
+\begin{table}[H]
+\centering\small
+\caption{T20 w sekundach: wybrane pasma tercjowe. Nazwy wierszy odpowiadają plikom.}
+\begin{tabular}{@{}l r r r r r r r@{}}
+\toprule
+Plik & 125 Hz & 250 Hz & 500 Hz & 1 kHz & 2 kHz & 4 kHz & 8 kHz\\
+\midrule
+\input{generated/reverb-measurements}
+\end{tabular}
+\end{table}
+Zgodnie z konspektem chłonność wyznaczono ze wzoru Sabine'a,
+z przyjętym w instrukcji współczynnikiem 0,16:
+\begin{equation}
+A(f)=\frac{0{,}16V}{\overline T(f)},\qquad
+K_2(f)=10\lg\left(1+\frac{4S}{A(f)}\right).
+\end{equation}
+Najpierw uśredniono czasy, a następnie przeliczono chłonność.
+\begin{table}[H]
+\centering\small
+\caption{Średnie T20, chłonność i poprawka środowiskowa dla powierzchni na środku pomieszczenia.}
+\begin{tabular}{@{}r r r r r r@{}}
+\toprule
+$f$ (Hz) & $\overline T_{M1}$ (s) & $\overline T_{M2}$ (s) & $\overline T$ (s) & $A$ (m$^2$) & $K_2$ (dB)\\
+\midrule
+\input{generated/reverb-summary}
+\end{tabular}
+\end{table}
+
+\subsection{Porównanie metod i potwierdzenie kwalifikacji}
+Dla $K_{2A}$ konspekt nakazuje przyjąć czas pogłosu przy 1 kHz
+\autocite{konspektKwalifikacja}. Otrzymano
+$\overline T(1\,\mathrm{kHz})=\reverbTime\;\unit{\second}$,
+$A=\reverbAbsorption\;\unit{\metre\squared}$ oraz
+$K_{2A}=\reverbCorrection\;\unit{\decibel}$ dla źródła na środku.
+Średnie T20 z dwóch ustawień mikrofonu wynoszą odpowiednio
+\qty{0.752}{\second} i \qty{0.760}{\second}.
+Dla wszystkich 12 wyników T20 przy 1 kHz moduł współczynnika korelacji
+wynosi co najmniej 0,99. Jest to kontrola liniowości dopasowania,
+która nie zastępuje oceny zakresu dynamiki i samego zaniku.
+Jako kontrolę wyboru parametru obliczono również średnie T30 przy 1 kHz:
+\qty{0.731}{\second}, co dawałoby $K_{2A}\approx\qty{5.22}{\decibel}$
+dla środka. Oba warianty prowadzą do tej samej oceny kwalifikacji.
+\begin{table}[H]
+\centering
+\caption{Porównanie poprawek A: metoda przybliżona i pogłosowa (T20 przy 1 kHz).}
+\begin{tabular}{@{}l r r r@{}}
+\toprule
+Położenie & $K_{2A,\alpha}$ (dB) & $K_{2A,T}$ (dB) & Różnica $T-\alpha$ (dB)\\
+\midrule
+\input{generated/reverb-comparison}
+\end{tabular}
+\end{table}
+Metoda pogłosowa daje chłonność około 12,4\% większą niż
+\qty{24.87}{\metre\squared} uzyskane z $\alpha=\num{0.15}$.
+Odpowiada jej efektywny współczynnik przy 1 kHz
+$\alpha_{\mathrm{ef}}=A/S_v\approx\reverbAlpha$.
+Nie jest to częstotliwościowo niezależny współczynnik materiałowy.
+Różnice poprawek nie przekraczają \qty{0.37}{\decibel}.
+Obie metody potwierdzają spełnienie kryterium
+$K_{2A}\leq\qty{7}{\decibel}$ dla rozpatrywanych powierzchni,
+a więc kwalifikację do zastosowanej metody orientacyjnej.
+Nie oznacza to automatycznie kwalifikacji do metody technicznej.
+
+W dalszych obliczeniach mocy pozostawiono pierwotne poprawki z metody
+przybliżonej, aby porównanie stanowiło osobne sprawdzenie kwalifikacji.
+Zastosowanie poprawek pogłosowych zwiększyłoby oszacowania $L_{WA}$
+o około 0,36 dB (środek), 0,29 dB (ściana) i 0,22 dB (róg).

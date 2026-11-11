@@ -12,6 +12,9 @@ Szczegóły w `przeglad-czwartego-punktu.md` i `svl-audit.csv`.
 
 Wyniki są oszacowaniem orientacyjnym. Ograniczenia: nieodtworzone
 współrzędne mikrofonów i wagi pól, brak niezależnego pomiaru tła dla
-każdego ustawienia, przybliżenie alfa=0,15 oraz brak pełnego budżetu
+każdego ustawienia, przybliżenie alfa=0,15 (porównane już z metodą pogłosową) oraz brak pełnego budżetu
 niepewności. W raporcie nie zadeklarowano pełnej zgodności normowej.
 Dalsza poprawa wymaga protokołu punktów lub dodatkowych pomiarów.
+
+Dodano porównanie z 12 eksportami pogłosu. Metoda T20 przy 1 kHz daje
+A=27,946 m² i K2A=5,319 dB dla środka; potwierdza kryterium <=7 dB.

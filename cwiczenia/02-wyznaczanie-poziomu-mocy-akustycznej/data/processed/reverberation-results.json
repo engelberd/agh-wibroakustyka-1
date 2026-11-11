@@ -1,0 +1,86 @@
+{
+  "method": "T20; Sabine coefficient 0.16 as in lab handout; mean over 12 spatial combinations",
+  "at_1kHz": {
+    "frequency_Hz": 1000.0,
+    "n": 12,
+    "T20_mean_s": 0.75575,
+    "T20_sd_s": 0.05651568567462246,
+    "A_m2": 27.945749255706254,
+    "z1_T20_mean_s": 0.7518333333333334,
+    "z2_T20_mean_s": 0.7596666666666666,
+    "K2_srodek_dB": 5.319129316852492,
+    "K2_sciana_dB": 3.601691278741426,
+    "K2_rog_dB": 2.3797066653335937
+  },
+  "A_approx_m2": 24.87,
+  "alpha_equivalent_1kHz": 0.16855096052898824,
+  "T30_mean_1kHz_s": 0.7308333333333333,
+  "comparison": {
+    "srodek": {
+      "S_m2": 16.7912,
+      "K2_approx_dB": 5.682762876221178,
+      "K2_reverb_dB": 5.319129316852492
+    },
+    "sciana": {
+      "S_m2": 9.0248,
+      "K2_approx_dB": 3.894347112467367,
+      "K2_reverb_dB": 3.601691278741426
+    },
+    "rog": {
+      "S_m2": 5.098,
+      "K2_approx_dB": 2.6005795501985807,
+      "K2_reverb_dB": 2.3797066653335937
+    }
+  },
+  "files": [
+    {
+      "file": "z1m1.txt",
+      "sha256": "8f6f3a45b115575aec712b9ae7219496849fcbb124f57b3ffa502c22d87679af"
+    },
+    {
+      "file": "z1m2.txt",
+      "sha256": "119b6e615b7fd3b1a139ad97a42fe781b898a1c5196cd73fcd6ed5dd9526c7e3"
+    },
+    {
+      "file": "z1m3.txt",
+      "sha256": "dfb457bbb829b521fe240907ddd12380d605b3411b2e2ed33d4f90d7d85619f7"
+    },
+    {
+      "file": "z1m4.txt",
+      "sha256": "850f6305d49d186ddb34294af42b904d393316ecb72f02b8ba5de59238273200"
+    },
+    {
+      "file": "z1m5.txt",
+      "sha256": "663c70b38e098efa252923dd06987da7f281345be5aeaaea727982234aaaa0ca"
+    },
+    {
+      "file": "z1m6.txt",
+      "sha256": "13ad60f41f3d164baf87e082b1a3f26fa48a7c238e83fb4664f0f28cc25b45b7"
+    },
+    {
+      "file": "z2m1.txt",
+      "sha256": "c61cf0fe59d386846ddd928d2b9ef8d14abd4e90deda3d8214905ff77b0c8b0e"
+    },
+    {
+      "file": "z2m2.txt",
+      "sha256": "503688b2a40d07187042f823840f68ab3455c581cd6304ae21871b8be2294487"
+    },
+    {
+      "file": "z2m3.txt",
+      "sha256": "1a12396c6b6359af9655fa40aeeeeed9de495bb02ee7116d348c79fa384a2c69"
+    },
+    {
+      "file": "z2m4.txt",
+      "sha256": "74e97f5139852ec6b481c931136bf330702ab970d8783f19cd3b53f1233f2997"
+    },
+    {
+      "file": "z2m5.txt",
+      "sha256": "30d79527453dfbbabe4a3552764d6767378b4d94468f3f319541605cbc17f9ea"
+    },
+    {
+      "file": "z2m6.txt",
+      "sha256": "7827ea80647f3ca99f9cf510a1b8fb5dfb6940bdea473a8b870e9a6614f5f872"
+    }
+  ],
+  "layout_note": "Series z1/z2 assigned to microphone settings M1/M2 according to user; six files per series represent successive source positions; no measured coordinates available."
+}

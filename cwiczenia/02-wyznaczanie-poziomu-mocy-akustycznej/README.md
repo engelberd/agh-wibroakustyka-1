@@ -28,3 +28,24 @@ Model: d=1 m, źródło dosunięte do przegród, dłuższy bok przy ścianie,
 równe wagi punktów i wspólne tło P38. Przy ścianie są trzy potwierdzone
 punkty; nie dopisywano czwartego. Nie potwierdzono pełnej zgodności normowej.
 Pełny przegląd plików: `analysis/audit_svl.py` i `data/processed/svl-audit.csv`.
+
+## Porównanie kwalifikacji metodą pogłosową
+
+`analysis/prepare_reverberation.py` odczytuje 12 eksportów z katalogu
+`data/raw/grupa 1 Wibro tech 11 30/`. Uruchom go przed kompilacją:
+
+```bash
+python3 cwiczenia/02-wyznaczanie-poziomu-mocy-akustycznej/analysis/prepare_reverberation.py
+```
+
+Wyniki: `data/processed/reverberation-long.csv`, `reverberation-averages.csv`
+i `reverberation-results.json`. Braki `--` zapisuje jako puste wartości CSV;
+średnie wykorzystują dodatnie dostępne T20 i zapisują liczebność n.
+Tabela raportu i K2A bazują na kompletnych danych dla 12 położeń.
+Wybór T20 jest jednolity, bez mieszania z eksportowaną kolumną RT.
+Surowe dane to tercje, nie oktawy; do K2A zastosowano 1 kHz według konspektu.
+Serie z1/z2 opisano jako ustawienia mikrofonu 1/2 zgodnie z relacją użytkownika,
+po sześć kolejnych położeń głośnika. Schematy są poglądowe, bez fikcyjnych
+współrzędnych pomiarowych. Nie wyciąga się z samych nazw z/m odmiennej
+interpretacji fizycznego układu. Wyniki mocy nadal bazują na alfa=0,15;
+metoda pogłosowa służy porównaniu i potwierdzeniu kwalifikacji.
