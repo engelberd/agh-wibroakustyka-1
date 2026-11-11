@@ -1,68 +1,39 @@
 \subsection{Kwalifikacja metodą pogłosową: układ i opracowanie}
-Jako niezależne porównanie z oszacowaniem $A=\alpha S_v$ wykorzystano
-czasy pogłosu z 12 plików w katalogu
-\texttt{data/raw/grupa 1 Wibro tech 11 30/}.
-Zgodnie z przebiegiem ćwiczenia zastosowano dwa ustawienia mikrofonu.
+Pomiary czasu pogłosu wykonano dla dwóch ustawień mikrofonu.
 Dla każdego z nich głośnik ustawiano kolejno w sześciu położeniach
 po przeciwnej stronie pomieszczenia; następnie zamieniono strony.
-Serię plików \texttt{z1m1--z1m6} przypisano do pierwszego ustawienia,
-a \texttt{z2m1--z2m6} do drugiego, zgodnie z opisem układu pomiarowego.
-Nazwy plików zachowano, a oznaczenia $M_1$, $M_2$ i $G_1$--$G_6$
-na schemacie służą opisowi fizycznych położeń.
+Łącznie uzyskano 12 wyników. Ustawienia mikrofonu oznaczono jako
+$M_1$ i $M_2$, a położenia głośnika jako $G_1$--$G_6$.
 \input{content/poglos-schematy}
 
-Eksporty zawierają EDT, T10, T15, T20, T30 i RT oraz współczynniki
-korelacji regresji. Do porównania przyjęto jednolicie parametr T20,
-aby nie mieszać różnych zakresów regresji pomiędzy częstotliwościami.
-T20 jest estymacją czasu zaniku o 60 dB na podstawie nachylenia
-w zakresie od $-5$ do $-25$ dB; wartości z eksportu nie mnoży się
-ponownie przez trzy \autocite{bkReverb}.
+Do kwalifikacji przyjęto czas pogłosu w paśmie o częstotliwości
+środkowej \qty{1}{\kilo\hertz}, wyznaczony jako T20.
+Parametr ten jest estymacją czasu zaniku o 60 dB na podstawie
+nachylenia w zakresie od $-5$ do $-25$ dB \autocite{bkReverb}.
 Czasy uśredniono arytmetycznie po 12 kombinacjach położeń:
 \begin{equation}
-\overline T(f)=\frac{1}{12}\sum_{j=1}^{2}\sum_{i=1}^{6}T_{20,ji}(f).
+\overline T=\frac{1}{12}\sum_{j=1}^{2}\sum_{i=1}^{6}T_{20,ji}.
 \end{equation}
-To średnia przestrzenna, a nie uśrednianie energetyczne poziomów dźwięku.
-Sam eksport nie zawiera przebiegów zaniku ani pełnych informacji
-o wzbudzeniu i torze pomiarowym, dlatego nie odtwarzano ich z domysłu.
-
-\subsection{Czasy pogłosu i chłonność}
-Pliki zawierają pasma tercjowe od 25 Hz do 20 kHz.
-W tabeli pokazano wybrane pasma o częstotliwościach środkowych
-125--8000 Hz; nie są to wyniki analizy oktawowej.
-Nie uśredniano czasów trzech tercji w celu zastąpienia pomiaru oktawowego.
-Komplet wartości, w tym braki oznaczone w eksporcie przez \texttt{--},
-zachowano w przetworzonym zestawieniu danych.
 \begin{table}[H]
-\centering\small
-\caption{T20 w sekundach: wybrane pasma tercjowe. Nazwy wierszy odpowiadają plikom.}
-\begin{tabular}{@{}l r r r r r r r@{}}
+\centering
+\caption{Czasy pogłosu T20 przy 1 kHz dla dwóch ustawień mikrofonu.}
+\begin{tabular}{@{}c r r@{}}
 \toprule
-Plik & 125 Hz & 250 Hz & 500 Hz & 1 kHz & 2 kHz & 4 kHz & 8 kHz\\
+Położenie głośnika & $M_1$: T20 (s) & $M_2$: T20 (s)\\
 \midrule
 \input{generated/reverb-measurements}
 \end{tabular}
 \end{table}
-Zgodnie z konspektem chłonność wyznaczono ze wzoru Sabine'a,
-z przyjętym w instrukcji współczynnikiem 0,16:
+
+Chłonność wyznaczono ze wzoru Sabine'a:
 \begin{equation}
-A(f)=\frac{0{,}16V}{\overline T(f)},\qquad
-K_2(f)=10\lg\left(1+\frac{4S}{A(f)}\right).
+A=\frac{0{,}16V}{\overline T},\qquad
+K_{2A}=10\lg\left(1+\frac{4S}{A}\right).
 \end{equation}
 Najpierw uśredniono czasy, a następnie przeliczono chłonność.
-\begin{table}[H]
-\centering\small
-\caption{Średnie T20, chłonność i poprawka środowiskowa dla powierzchni na środku pomieszczenia.}
-\begin{tabular}{@{}r r r r r r@{}}
-\toprule
-$f$ (Hz) & $\overline T_{M1}$ (s) & $\overline T_{M2}$ (s) & $\overline T$ (s) & $A$ (m$^2$) & $K_2$ (dB)\\
-\midrule
-\input{generated/reverb-summary}
-\end{tabular}
-\end{table}
 
 \subsection{Porównanie metod i potwierdzenie kwalifikacji}
-Dla $K_{2A}$ konspekt nakazuje przyjąć czas pogłosu przy 1 kHz
-\autocite{konspektKwalifikacja}. Otrzymano
+Otrzymano
 $\overline T(1\,\mathrm{kHz})=\reverbTime\;\unit{\second}$,
 $A=\reverbAbsorption\;\unit{\metre\squared}$ oraz
 $K_{2A}=\reverbCorrection\;\unit{\decibel}$ dla źródła na środku.
@@ -71,9 +42,6 @@ $K_{2A}=\reverbCorrection\;\unit{\decibel}$ dla źródła na środku.
 Dla wszystkich 12 wyników T20 przy 1 kHz moduł współczynnika korelacji
 wynosi co najmniej 0,99. Jest to kontrola liniowości dopasowania,
 która nie zastępuje oceny zakresu dynamiki i samego zaniku.
-Jako kontrolę wyboru parametru obliczono również średnie T30 przy 1 kHz:
-\qty{0.731}{\second}, co dawałoby $K_{2A}\approx\qty{5.22}{\decibel}$
-dla środka. Oba warianty prowadzą do tej samej oceny kwalifikacji.
 \begin{table}[H]
 \centering
 \caption{Porównanie poprawek A: metoda przybliżona i pogłosowa (T20 przy 1 kHz).}

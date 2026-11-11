@@ -1,5 +1,5 @@
 {
-  "method": "T20; Sabine coefficient 0.16 as in lab handout; mean over 12 spatial combinations",
+  "method": "T20; Sabine coefficient 0.16; mean over 12 spatial combinations",
   "at_1kHz": {
     "frequency_Hz": 1000.0,
     "n": 12,
@@ -14,7 +14,6 @@
   },
   "A_approx_m2": 24.87,
   "alpha_equivalent_1kHz": 0.16855096052898824,
-  "T30_mean_1kHz_s": 0.7308333333333333,
   "comparison": {
     "srodek": {
       "S_m2": 16.7912,
