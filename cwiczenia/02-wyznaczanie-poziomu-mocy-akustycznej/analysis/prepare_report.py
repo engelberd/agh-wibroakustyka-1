@@ -29,7 +29,7 @@ for name in ('measurement-rows.tex', 'mean-rows.tex'):
     p.write_text(p.read_text()+bs+'bottomrule'+chr(10))
 files=sorted((ROOT/'data/raw/29_10').glob('*.SVL'))
 with (ROOT/'data/processed/svl-inventory.csv').open('w') as f:
- w=csv.writer(f);w.writerow(['file','size_bytes','sha256','assignment'])
+ w=csv.writer(f,lineterminator='\n');w.writerow(['file','size_bytes','sha256','assignment'])
  assignment={r['plik']+'.SVL':r['polozenie']+': '+r['rola']+'; '+r['opis'] for r in rows}
  for p in files:w.writerow([p.name,p.stat().st_size,hashlib.sha256(p.read_bytes()).hexdigest(),assignment.get(p.name,'nieprzypisany')])
 print(json.dumps(result,ensure_ascii=False,indent=2))

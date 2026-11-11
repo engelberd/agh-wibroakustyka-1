@@ -97,7 +97,7 @@ def read(path):
 
 def write_csv(name, rows):
     with (OUT/name).open('w',newline='',encoding='utf-8') as f:
-        writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
+        writer=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n');writer.writeheader();writer.writerows(rows)
 
 if __name__ == '__main__':
     OUT.mkdir(parents=True,exist_ok=True)
