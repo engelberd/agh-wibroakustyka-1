@@ -1,0 +1,47 @@
+\section{Kwalifikacja pomieszczenia}
+\subsection{Pomieszczenie i przyjęta metoda}
+Pomieszczenie ma wymiary $\qty{5}{\metre}\times\qty{8}{\metre}$
+i wysokość \qty{3.3}{\metre}. Jego objętość i całkowita powierzchnia
+przegród (podłoga, sufit i cztery ściany) wynoszą:
+\begin{align}
+V &= 5\cdot8\cdot3{,}3 = \roomVolume\;\unit{\metre\cubed},\\
+S_v &= 2(5\cdot8+5\cdot3{,}3+8\cdot3{,}3)
+= \roomSurface\;\unit{\metre\squared}.
+\end{align}
+Zastosowano metodę przybliżoną opisaną w konspekcie kwalifikacji.
+Przyjęto średni współczynnik pochłaniania $\alpha=\num{0.15}$, zgodnie
+z ustaleniem z ćwiczenia. Nie wyznaczano chłonności na podstawie czasu pogłosu.
+\todo{Dodać szkic i opis wykończenia przegród oraz uzasadnienie przyjętego
+współczynnika z materiałów zajęciowych.}
+Chłonność oszacowano jako:
+\begin{equation}
+A=\alpha S_v=\num{0.15}\cdot\roomSurface
+=\roomAbsorption\;\unit{\metre\squared}.
+\end{equation}
+\subsection{Powierzchnia pomiarowa dla źródła na środku}
+Dla leżącego odkurzacza przy odległości $d=\qty{1}{\metre}$:
+\begin{align}
+a&=0{,}5\cdot0{,}48+1=\qty{1.24}{\metre},\\
+b&=0{,}5\cdot0{,}26+1=\qty{1.13}{\metre},\\
+c&=0{,}18+1=\qty{1.18}{\metre}.
+\end{align}
+Pole powierzchni nad podłogą odbijającą, bez dolnej ściany, wynosi:
+\begin{equation}
+S=4(ab+ac+bc)
+=4(1{,}24\cdot1{,}13+1{,}24\cdot1{,}18+1{,}13\cdot1{,}18)
+=\measurementSurface\;\unit{\metre\squared}.
+\end{equation}
+\subsection{Poprawka środowiskowa i ocena}
+Zgodnie z konspektem:
+\begin{equation}
+K_{2A}=10\lg\left(1+\frac{4S}{A}\right)
+=\environmentCorrection\;\unit{\decibel}.
+\end{equation}
+Dla przyjętej powierzchni i $\alpha$ spełnione jest kryterium metody
+orientacyjnej $K_{2A}\leq\qty{7}{\decibel}$.
+Jest to kwalifikacja oparta na oszacowaniu chłonności, bez pomiaru pogłosu.
+Wynik dotyczy wskazanej geometrii; dla ustawienia przy ścianie i w rogu
+należy określić powierzchnie ograniczone dodatkowymi płaszczyznami
+odbijającymi i ponownie obliczyć $S$ oraz $K_{2A}$.
+\todo{Ustalić, czy wymagane jest dodatkowe porównanie z powierzchnią
+półsferyczną wskazane w konspekcie kwalifikacji.}

@@ -1,0 +1,17 @@
+{
+  "V_m3": 132.0,
+  "Sv_m2": 165.8,
+  "alpha": 0.15,
+  "A_m2": 24.87,
+  "a_m": 1.24,
+  "b_m": 1.13,
+  "c_m": 1.18,
+  "S_srodek_m2": 16.791199999999996,
+  "K2_srodek_dB": 5.682762876221177,
+  "mean_levels_dB": {
+    "srodek": 83.53982471589079,
+    "rog": 85.85281227834076,
+    "sciana": 84.43521350144492
+  },
+  "notes": "Średnie energetyczne LAeq z SVL przy jednakowych wagach punktów. Brak zatwierdzonej geometrii ściany i rogu. Nie obliczono końcowego LWA."
+}

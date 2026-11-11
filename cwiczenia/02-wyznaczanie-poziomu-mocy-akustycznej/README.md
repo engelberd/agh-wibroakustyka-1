@@ -1,31 +1,26 @@
 # Wyznaczanie poziomu mocy akustycznej
 
-Ćwiczenie 2: jeden raport łączący kwalifikację pomieszczenia i pomiar mocy
-akustycznej metodą orientacyjną. To szkielet do uzupełnienia, bez wyników.
-Autorzy, grupa i prowadzący pochodzą z ćwiczenia 1; datę ustal w `main.tex`.
+Raport ma dwie numerowane części: kwalifikację pomieszczenia metodą
+przybliżoną (alfa=0,15) oraz wyznaczanie mocy dla środka, ściany i rogu.
+Treść edytuj w `content/02-kwalifikacja.tex` i `content/04-moc.tex`.
 
-## Materiały i katalogi
-
-- `konspekty/`: obie oryginalne instrukcje, wymienione w bibliografii.
-- `content/`: cel, teoria, obiekt i aparatura, metodyka obu części, wyniki,
-  niepewność oraz wnioski. Pola do uzupełnienia oznaczono `\todo{...}`.
-- `data/raw/`: oryginalne rejestracje, czasy pogłosu i protokoły pomiarowe.
-- `data/processed/`: uporządkowane dane i wyniki obliczeń.
-- `analysis/`: skrypty analizy.
-- `figures/`: szkic pomieszczenia, powierzchnie i punkty pomiarowe, zdjęcia.
-- `generated/`: wygenerowane tabele i wykresy do raportu.
-
-Najpierw uzupełnij geometrię pomieszczenia i źródła, pomiary pogłosu,
-poziomy źródła z tłem i samego tła dla trzech położeń źródła. Zachowaj
-rozróżnienie pasm oktawowych pogłosu i tercjowych pomiarów źródła.
-Kwalifikację przygotuj dla powierzchni prostopadłościennej i półsferycznej.
-Konspekty zawierają rozbieżne zakresy odległości pomiarowej; udokumentuj
-faktycznie zastosowany wariant. Wyniki i kryteria opracuj według materiałów
-zajęciowych, odnotowując ewentualne uzgodnienia z prowadzącym.
-
-## Kompilacja i eksport (z katalogu głównego)
+Notatki z przypisaniem plików: `data/raw/notatki-pomiarowe.csv`.
+Oryginalne rejestracje: `data/raw/29_10/`. Pozostałe SVL są nieprzypisane.
+Inwentaryzacja z SHA256: `data/processed/svl-inventory.csv`.
+Wyniki obliczeń: `data/processed/report-results.json`; tabele i wartości
+LaTeX: `generated/`. Nie edytuj ich ręcznie, uruchom ponownie analizę.
+Lista brakujących ustaleń: `analysis/do-uzupelnienia.md`.
 
 ```bash
+python3 cwiczenia/02-wyznaczanie-poziomu-mocy-akustycznej/analysis/export_svl.py
+python3 cwiczenia/02-wyznaczanie-poziomu-mocy-akustycznej/analysis/prepare_report.py
 python3 scripts/report.py build 02-wyznaczanie-poziomu-mocy-akustycznej
-python3 scripts/report.py export 02-wyznaczanie-poziomu-mocy-akustycznej
 ```
+
+Poziomy w tabelach pochodzą z przypisanych plików SVL (LAeq).
+Notatki służą wyłącznie do przypisania punktów; ich poziomy odpowiadają LAE
+z dokładnością do zaokrąglenia. Profile A/C/Z i czas 15 s potwierdzono w nagłówkach.
+Eksport obejmuje `svl_summary.csv`, `svl_logger_1s.csv` i `svl_metadata.json`.
+Parser kontroluje granice bloków, długości danych, konfigurację profili, flagi
+przeciążenia, liczbę rekordów i zgodność średnich A/C/Z oraz LAE z czasem.
+Końcowy LWA wymaga zatwierdzenia geometrii i reprezentatywności tła.

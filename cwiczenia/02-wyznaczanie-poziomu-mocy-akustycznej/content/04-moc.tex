@@ -1,0 +1,78 @@
+\section{Wyznaczanie poziomu mocy akustycznej}
+\subsection{Rozmieszczenie punktów i przebieg pomiarów}
+Wykonano pięć pomiarów przy pracującym źródle na środku pomieszczenia
+oraz po trzy przy źródle w rogu i przy ścianie. Rejestrację P38 przypisano
+do tła; nie wchodzi ona do średniej poziomów pracującego źródła.
+Określenia ścian w tabeli zachowują nazwy z notatek i wskazują kierunki
+punktów w ustawieniu środkowym, a nie osobne położenia odkurzacza.
+\todo{Dodać szkice trzech ustawień, współrzędne punktów, odległości od
+źródła i ścian, czasy pomiarów oraz przypisanie punktów P50--P55.}
+
+\subsection{Zestawienie pomiarów}
+Wartości $L_{Aeq}$ odczytano z plików SVL miernika SVAN 971.
+Każda z przypisanych rejestracji trwała \qty{15}{\second}; zapis sekundowy
+obejmuje 15 rekordów. Profile mają kolejno korekcje A, C i Z.
+Sprawdzono zgodność średnich energetycznych rekordów z wynikami zbiorczymi
+każdego profilu, z tolerancją \qty{0.011}{\decibel}, wynikającą z rozdzielczości zapisu.
+Interpretacja formatu opiera się na instrukcji producenta \autocite{svan971}.
+
+Wartości z notatek odpowiadają po zaokrągleniu poziomowi ekspozycji $L_{AE}$,
+a nie poziomowi równoważnemu $L_{Aeq}$:
+\begin{equation}
+L_{AE}=L_{Aeq}+10\lg(T/\qty{1}{\second}).
+\end{equation}
+Dla $T=\qty{15}{\second}$ różnica wynosi około \qty{11.76}{\decibel}.
+Przykładowo P37 zawiera $L_{Aeq}=\qty{82.70}{\decibel}$ oraz
+$L_{AE}=\qty{94.46}{\decibel}$. W obliczeniach wykorzystano $L_{Aeq}$.
+
+\begin{table}[H]
+\centering\small
+\caption{Poziomy równoważne A z SVL; P38 stanowi tło.}
+\begin{tabularx}{\linewidth}{@{}l l L r@{}}
+\toprule
+Położenie & Plik & Opis punktu & $L_{Aeq}$ (dB)\\
+\midrule
+\input{generated/measurement-rows}
+\end{tabularx}
+\end{table}
+
+\subsection{Uśrednianie i korekcje}
+Dla jednakowych wag punktów średnią energetyczną oblicza się jako:
+\begin{equation}
+\overline L=10\lg\left(\frac{1}{n}\sum_{i=1}^n10^{0{,}1L_i}\right).
+\end{equation}
+\begin{table}[H]
+\centering
+\caption{Średnie energetyczne $L_{Aeq}$ z SVL, przy jednakowych wagach.}
+\begin{tabular}{@{}l c r@{}}
+\toprule
+Położenie & Liczba punktów źródła & $\overline L_A$ (dB)\\
+\midrule
+\input{generated/mean-rows}
+\end{tabular}
+\end{table}
+Są to średnie poziomów ciśnienia, przed korekcjami i przeliczeniem na moc.
+Jeśli punkty reprezentują różne pola, należy zastąpić jednakowe wagi
+udziałami powierzchni przypisanych punktom.
+
+Dla poziomów A stosuje się
+$\Delta L_A=\overline L_{A,\text{źr+tło}}-\overline L_{A,\text{tło}}$
+oraz $K_{1A}=-10\lg(1-10^{-0{,}1\Delta L_A})$ w zakresie wskazanym
+w konspekcie. Dla $\Delta L_A>\qty{10}{\decibel}$ konspekt przyjmuje
+$K_{1A}=0$. Przy różnicy poniżej \qty{3}{\decibel} kryterium tła nie jest
+spełnione. Poziom $L_{Aeq}$ tła P38 wynosi \qty{27.65}{\decibel} i jest o ponad \qty{50}{\decibel} niższa od średniej
+dla środka, lecz pojedynczy pomiar tła nie potwierdza jego rozkładu na
+całej powierzchni ani warunków przy ścianie i w rogu.
+
+\todo{Sprawdzić schemat punktów względem konspektu: podaje on co najmniej cztery punkty, podczas gdy przy ścianie i w rogu zanotowano po trzy. Uzasadnić zastosowany układ przy dodatkowych płaszczyznach odbijających. Nie deklarować zgodności metody wyłącznie na podstawie liczby pomiarów.}
+
+\subsection{Przeliczenie na poziom mocy}
+Po zatwierdzeniu geometrii i reprezentatywności tła:
+\begin{equation}
+L_{WA}=\overline L_{A,\text{źr+tło}}-K_{1A}-K_{2A}
++10\lg\left(\frac{S}{S_0}\right),\qquad S_0=\qty{1}{\metre\squared}.
+\end{equation}
+\todo{Uzupełnić tabelę końcową dla trzech ustawień: powierzchnia,
+średnia A, tło, poprawki, poziom mocy i ocena niepewności.}
+Nie przenoszono pola powierzchni dla środka do pozostałych ustawień.
+Różnica średnich ciśnienia nie oznacza bezpośrednio różnicy mocy źródła.
