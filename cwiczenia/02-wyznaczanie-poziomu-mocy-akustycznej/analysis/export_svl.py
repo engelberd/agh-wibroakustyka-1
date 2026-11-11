@@ -60,8 +60,10 @@ def read(path):
     require(main is not None, 'Missing main summary')
     require(len(records) == logger[8] + (logger[9]<<16), 'Record count mismatch')
     require(logger[10] + (logger[11]<<16) == len(records), 'Skipped logger records')
-    require(main[3] + (main[4]<<16) == settings[11] + (settings[12]<<16) == len(records),
-            f'Duration mismatch: summary={main[3]+(main[4]<<16)}, setting={settings[11]+(settings[12]<<16)}, records={len(records)}')
+    duration = main[3] + (main[4]<<16)
+    configured_duration = settings[11] + (settings[12]<<16)
+    require(0 < duration == len(records) <= configured_duration,
+            'Actual duration/record count/configured duration mismatch')
     require(all(all(abs(r[a]-r[b]) <= 1 for a,b in ((44,4),(45,8),(46,12))) for r in records),
             'Profile Leq and spectrum totals disagree')
     leq = 10*math.log10(sum(10**(r[4]/1000) for r in records)/len(records))
@@ -81,7 +83,8 @@ def read(path):
         date=f'{2000+(date>>9):04d}-{(date>>5)&15:02d}-{date&31:02d}',
         start_time_code=time,start_hour=time//1800,start_minute=(time//30)%60,
         time_note='Seconds unresolved: manual B.4 gives code%30; two-second encoding gives 2*(code%30). No timezone stored.',
-        duration_s=main[3] + (main[4]<<16),logger_step_s=1,logger_records=len(records),
+        duration_s=duration,configured_duration_s=configured_duration,
+        stopped_early=duration < configured_duration,logger_step_s=1,logger_records=len(records),
         LAeq_dB=summary,LAE_dB=main[6]/100,LAFmax_dB=main[7]/100,LAFmin_dB=main[8]/100,
         LCeq_dB=main[30]/100,LZeq_dB=main[50]/100,
         LAeq_from_logger_dB=leq,consistency_error_dB=leq-summary,
