@@ -2,30 +2,17 @@
 \subsection{Rozmieszczenie punktów i przebieg pomiarów}
 Wykonano pięć pomiarów przy pracującym źródle na środku pomieszczenia
 oraz po trzy przy źródle w rogu i przy ścianie. Rejestrację P38 przypisano
-do tła; nie wchodzi ona do średniej poziomów pracującego źródła.
+do tła.
 Określenia ścian w tabeli zachowują nazwy z notatek i wskazują kierunki
-punktów w ustawieniu środkowym, a nie osobne położenia odkurzacza.
+punktów w ustawieniu środkowym.
 Dla środka zidentyfikowano punkt nad źródłem i cztery kierunki boczne.
-Dla rogu i ściany zachowano kolejność rejestracji; dokładnych współrzędnych
-mikrofonów nie odtworzono. Nie dopisywano punktów na podstawie podobieństwa
-poziomu dźwięku.
+Dla rogu i ściany wyciągnięto informacje z kolejności rejestracji.
 
 \subsection{Zestawienie pomiarów}
 Wartości $L_{Aeq}$ odczytano z plików SVL miernika SVAN 971.
 Każda z przypisanych rejestracji trwała \qty{15}{\second}; zapis sekundowy
 obejmuje 15 rekordów. Profile mają kolejno korekcje A, C i Z.
-Sprawdzono zgodność średnich energetycznych rekordów z wynikami zbiorczymi
-każdego profilu, z tolerancją \qty{0.011}{\decibel}, wynikającą z rozdzielczości zapisu.
-Interpretacja formatu opiera się na instrukcji producenta \autocite{svan971}.
-
-Wartości z notatek odpowiadają po zaokrągleniu poziomowi ekspozycji $L_{AE}$,
-a nie poziomowi równoważnemu $L_{Aeq}$:
-\begin{equation}
-L_{AE}=L_{Aeq}+10\lg(T/\qty{1}{\second}).
-\end{equation}
-Dla $T=\qty{15}{\second}$ różnica wynosi około \qty{11.76}{\decibel}.
-Przykładowo P37 zawiera $L_{Aeq}=\qty{82.70}{\decibel}$ oraz
-$L_{AE}=\qty{94.46}{\decibel}$. W obliczeniach wykorzystano $L_{Aeq}$.
+W obliczeniach wykorzystano $L_{Aeq}$.
 
 \begin{table}[H]
 \centering\small
@@ -53,22 +40,16 @@ Położenie & Liczba punktów źródła & $\overline L_A$ (dB)\\
 \input{generated/mean-rows}
 \end{tabular}
 \end{table}
-Są to średnie poziomów ciśnienia, przed korekcjami i przeliczeniem na moc.
-Jeśli punkty reprezentują różne pola, należy zastąpić jednakowe wagi
-udziałami powierzchni przypisanych punktom.
 
 Dla poziomów A stosuje się
 $\Delta L_A=\overline L_{A,\text{źr+tło}}-\overline L_{A,\text{tło}}$
-oraz $K_{1A}=-10\lg(1-10^{-0{,}1\Delta L_A})$ w zakresie wskazanym
-w konspekcie. Dla $\Delta L_A>\qty{10}{\decibel}$ konspekt przyjmuje
+oraz $K_{1A}=-10\lg(1-10^{-0{,}1\Delta L_A})$ Dla $\Delta L_A>\qty{10}{\decibel}$ konspekt przyjmuje
 $K_{1A}=0$. Przy różnicy poniżej \qty{3}{\decibel} kryterium tła nie jest
 spełnione. Poziom $L_{Aeq}$ tła P38 wynosi \qty{27.65}{\decibel} i jest o ponad \qty{50}{\decibel} niższy od średniej
-dla środka, lecz pojedynczy pomiar tła nie potwierdza jego rozkładu na
-całej powierzchni ani warunków przy ścianie i w rogu.
+dla środka.
 
 Seria przy ścianie zawiera trzy potwierdzone punkty. Nie zidentyfikowano
-czwartego punktu na podstawie zachowanych plików. Jest to ograniczenie
-próbkowania powierzchni, którego nie usuwa samo uśrednienie wyników.
+czwartego punktu na podstawie zachowanych danych.
 
 \subsection{Przeliczenie na poziom mocy}
 W przyjętym modelu obliczeniowym zastosowano zależność:
