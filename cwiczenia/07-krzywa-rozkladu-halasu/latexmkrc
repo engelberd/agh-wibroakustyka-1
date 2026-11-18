@@ -1,0 +1,2 @@
+my $result = do '../../latexmkrc';
+die "Cannot load shared latexmkrc: $@ $!" unless defined $result;
